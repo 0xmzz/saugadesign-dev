@@ -32,7 +32,7 @@
         ></vue-typer>
         <v-row align="end" :class="font">
           <vue-typer
-            :text="['1234 your Adress']"
+            :text="['1234 your Address']"
             :repeat="0"
             :shuffle="false"
             initial-action="typing"
@@ -99,7 +99,7 @@
                   :items="items.colours"
                   :item-value="items.colours.color"
                   item-text="color"
-                  label="Acrylic Colour "
+                  label="Acrylic Colour"
                   dense
                 ></v-select>
               </v-row>
@@ -172,7 +172,7 @@
           <v-text-field
             id="price"
             class="input"
-            label="**Approximate Quote: $"
+            label="**Quote: $"
             v-model="calcuateCost"
             hide-details="auto"
             readonly
@@ -183,7 +183,7 @@
             id="custom-sign"
             class="snipcart-add-item"
             data-item-id="custom-sign"
-            data-item-price="30.00"
+            data-item-price="25.00"
             data-item-url="https://saugadesign.com"
             data-item-description="Custom made house address sign"
             data-item-image="/assets/SaugaSignslogo.PNG"
@@ -193,7 +193,7 @@
             data-item-custom1-required="true"
             :data-item-custom1-value="font"
             data-item-custom2-name="Acrylic Colour"
-            data-item-custom2-options="Black|Red|White|Gold"
+            data-item-custom2-options="Black|Red|White|Grey"
             data-item-custom2-required="true"
             :data-item-custom2-value="items.isColor.color"
             data-item-custom3-name="Address Sign Text"
@@ -212,20 +212,21 @@
             data-item-custom7-required="true"
             :data-item-custom7-value="isLocation"
           >
-            *Pay Downpayment ($30)</v-btn
+            *Add to Cart</v-btn
           >
           <!-- <v-btn color="success" outlined>Add to Cart</v-btn> -->
         </v-card-actions>
       </v-row>
       <div>
         <p>
-          *In order to prepare your order we require a $30 downpayment, the
-          reamining amount can be settled upon delivery, pickup or at
-          installtion time.
+          *We charge a $25 downpayment to prepare you order, you can either pay
+          it now or defer it during checkout if you are paying via email money
+          transfer. The remaining amount can be settled upon delivery, pickup or
+          at installation time.
         </p>
         <p>
           **The quote will be qualified once we confirm your order and
-          installation requirements with you.
+          installation requirements with you in 1 to 2 business days.
         </p>
       </div>
       <v-card class="mx-auto" max-width="600">
@@ -305,7 +306,7 @@ export default {
         { color: "Black", id: 1 },
         { color: "Red", id: 2 },
         { color: "White", id: 3 },
-        { color: "Gold", id: 4 },
+        { color: "Grey", id: 4 },
       ],
       isColor: {
         color: "",
@@ -457,11 +458,11 @@ export default {
   right: 17%;
 }
 .Banner1 {
-  font-family: "ScriptMTBold";
+  font-family: "Slimlines";
   position: absolute;
   color: black;
-  top: 53%;
-  right: 53%;
+  top: 52%;
+  right: 56%;
 
   font-size: 2.2vw;
 
