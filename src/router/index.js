@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import ConstactUs from "../views/ContactUs";
+import aboutus from "../views/AboutUs";
 import Cart from "../views/Cart";
 import Checkout from "../views/Checkout";
 import ThankYou from "../views/ThankYou";
@@ -21,7 +21,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
   },
-  { path: "/contactus", name: "contactus", component: ConstactUs },
+  { path: "/aboutus", name: "aboutus", component: aboutus },
   { path: "/cart", name: "cart", component: Cart },
   { path: "/checkout", name: "checkout", component: Checkout },
   { path: "/thank-you", name: "thankyou", component: ThankYou },

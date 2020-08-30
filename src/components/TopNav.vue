@@ -9,8 +9,8 @@
         <v-btn to="/" text>
           Home
         </v-btn>
-        <v-btn to="contactus" text>
-          Contact us
+        <v-btn to="aboutus" text>
+          About us!
         </v-btn>
         <v-btn href="#cart" text>
           Cart

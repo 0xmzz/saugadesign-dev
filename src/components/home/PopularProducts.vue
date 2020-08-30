@@ -32,7 +32,7 @@
         ></vue-typer>
         <v-row align="end" :class="font">
           <vue-typer
-            :text="['1234 your Address']"
+            :text="['1234 your street']"
             :repeat="0"
             :shuffle="false"
             initial-action="typing"
@@ -104,13 +104,15 @@
                 ></v-select>
               </v-row>
               <v-row>
-                <v-select
-                  v-model="isFinish"
-                  :items="items.finish"
-                  :item-value="items.finish"
-                  label="Acrylic Finish"
-                  dense
-                ></v-select>
+                <template v-if="items.isColor.color === 'Black'">
+                  <v-select
+                    v-model="isFinish"
+                    :items="items.finish"
+                    :item-value="items.finish"
+                    label="Acrylic Finish"
+                    dense
+                  ></v-select>
+                </template>
               </v-row>
               <v-row>
                 <v-select
@@ -188,19 +190,18 @@
             data-item-description="Custom made house address sign"
             data-item-image="/assets/SaugaSignslogo.PNG"
             data-item-name="Custom Sign"
-            data-item-custom8-name="Phone Number"
-            data-item-custom1-name="Font Choice"
-            data-item-custom1-options="Edward|Script|Gessele|Slimlines|Copasetic|Aerolite"
+            data-item-custom1-name="Address Sign Text"
+            data-item-custom1-type="textarea"
             data-item-custom1-required="true"
-            :data-item-custom1-value="font"
+            :data-item-custom1-value="overlay"
             data-item-custom2-name="Acrylic Colour"
             data-item-custom2-options="Black|Red|White|Grey"
             data-item-custom2-required="true"
             :data-item-custom2-value="items.isColor.color"
-            data-item-custom3-name="Address Sign Text"
-            data-item-custom3-type="textarea"
+            data-item-custom3-name="Font Choice"
+            data-item-custom3-options="Edward|Script|Gessele|Slimlines|Copasetic|Aerolite"
             data-item-custom3-required="true"
-            :data-item-custom3-value="overlay"
+            :data-item-custom3-value="font"
             data-item-custom5-name="Surface Applied on"
             data-item-custom5-options="Brick|Stucco|Stone|Other"
             :data-item-custom5-value="isSurface"
@@ -212,6 +213,15 @@
             data-item-custom7-options="Halton +$80|Peel+$80|City of Toronto +$90|York +$90|Durham +$100|Other"
             data-item-custom7-required="true"
             :data-item-custom7-value="isLocation"
+            data-item-custom8-name="Phone Number"
+            data-item-custom8-required="true"
+            data-item-custom9-name="Letter Height"
+            data-item-custom9-options="8.5 Inch|9.5 Inch|10.5 Inch"
+            data-item-custom9-required="true"
+            :data-item-custom9-value="isHeight"
+            data-item-custom10-name="Acrylic Finish"
+            :data-item-custom10-value="isFinish"
+            data-item-custom10-options="Glossy|Matte +$10"
           >
             *Add to Cart</v-btn
           >
@@ -220,10 +230,8 @@
       </v-row>
       <div>
         <p>
-          *We charge a $25 downpayment to prepare you order, you can either pay
-          it now or defer it during checkout if you are paying via email money
-          transfer. The remaining amount can be settled upon delivery, pickup or
-          at installation time.
+          *$25 down-payment is required to prepare you order, you can pay
+          it by using the add to cart button.
         </p>
         <p>
           **The quote will be qualified once we confirm your order and
@@ -317,7 +325,7 @@ export default {
       matte: false,
       surface: ["Brick", "Stucco", "Stone", "Other"],
       finish: ["Glossy", "Matte +$10"],
-      height: ["7 Inch", "8 Inch", "8.5 Inch"],
+      height: ["8.5 Inch", "9.5 Inch", "10.5 Inch"],
       install: ["Yes", "No"],
       location: [
         "Halton +$80",
@@ -511,6 +519,7 @@ export default {
 .radio-1 >>> label {
   font-size: 4vw;
   font-family: "edwardian_alternatebold", Arial, sans-serif;
+  font-weight: bolder;
 }
 .radio-2 >>> label {
   font-size: 3vw;
@@ -519,6 +528,7 @@ export default {
 .radio-3 >>> label {
   font-size: 4vw;
   font-family: "Gessele", Helvetica, sans-serif;
+  font-weight: bolder;
 }
 .radio-4 >>> label {
   font-size: 3vw;
@@ -528,17 +538,19 @@ export default {
   font-size: 3vw;
   font-family: "Copasetic", Helvetica, sans-serif;
   text-transform: capitalize;
+  font-weight: bolder;
 }
 .radio-6 >>> label {
   font-size: 4vw;
   font-family: "Aerolite", Helvetica, sans-serif;
+  font-weight: bolder;
 }
 /* Fonts for reactive sign  */
 
 .Edward {
   font-family: "edwardian_alternatebold";
 
-  font-weight: 1000;
+  font-weight: bolder;
   text-align: center;
 }
 
@@ -550,7 +562,7 @@ export default {
 .Gessele {
   font-family: "Gessele";
 
-  font-weight: 1000;
+  font-weight: bolder;
   text-align: center;
 }
 .Slimlines {
@@ -561,14 +573,14 @@ export default {
 .Copasetic {
   font-family: "Copasetic";
 
-  font-weight: 900;
+  font-weight: bolder;
   text-transform: uppercase;
   text-align: center;
 }
 
 .Aerolite {
   font-family: "Aerolite";
-  font-weight: 900;
+  font-weight: bolder;
   text-align: center;
 }
 
