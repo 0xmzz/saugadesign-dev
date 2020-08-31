@@ -155,12 +155,12 @@
                   height
                 </div>
               </template>
+
               <template v-if="isLocation === 'Other' && isInstall === 'Yes'">
                 <div class="red">
                   We only provide quotes for installations within the GTA
                   region. If other is selected we can discuss your installation
-                  options when we reach out or
-                  <a href="/store"> contact us</a>.
+                  options when we reach out to you. if you have any questions click on the chat bubble on the bottom right and leave a message. You can also email us at saugadesign@gmail.com.
                 </div>
               </template>
             </div>
@@ -174,12 +174,22 @@
           <v-text-field
             id="price"
             class="input"
-            label="**Quote: $"
+            label="Quoted: $"
             v-model="calcuateCost"
             hide-details="auto"
             readonly
           ></v-text-field>
+          <!-- <v-row>
+            <v-checkbox
+              v-model="ispayNow"
+              :items="items.payNow"
+              :item-value="items.payNow"
+              label="Pay later?"
+              dense
+            ></v-checkbox>
+          </v-row> -->
         </v-col>
+
         <v-card-actions>
           <v-btn
             id="custom-sign"
@@ -206,15 +216,12 @@
             data-item-custom5-options="Brick|Stucco|Stone|Other"
             :data-item-custom5-value="isSurface"
             data-item-custom6-name="Installation"
-            data-item-custom6-options="Yes|No"
+            data-item-custom6-options="No|Yes"
             data-item-custom6-required="true"
             :data-item-custom6-value="isInstall"
             data-item-custom7-name="Installation Quote by Region"
-            data-item-custom7-options="Halton +$80|Peel+$80|City of Toronto +$90|York +$90|Durham +$100|Other"
-            data-item-custom7-required="true"
+            data-item-custom7-options="None|Halton +$80|Peel+$80|City of Toronto +$90|York +$90|Durham +$100|Other"
             :data-item-custom7-value="isLocation"
-            data-item-custom8-name="Phone Number"
-            data-item-custom8-required="true"
             data-item-custom9-name="Letter Height"
             data-item-custom9-options="8.5 Inch|9.5 Inch|10.5 Inch"
             data-item-custom9-required="true"
@@ -222,20 +229,23 @@
             data-item-custom10-name="Acrylic Finish"
             :data-item-custom10-value="isFinish"
             data-item-custom10-options="Glossy|Matte +$10"
+            data-item-custom11-name="Quoted"
+            :data-item-custom11-value="'$' + calcuateCost"
+            data-item-custom8-name="Phone Number"
+            data-item-custom8-required="true"
           >
-            *Add to Cart</v-btn
+            *Add to cart</v-btn
           >
           <!-- <v-btn color="success" outlined>Add to Cart</v-btn> -->
         </v-card-actions>
       </v-row>
       <div>
-        <p>
-          *$25 down-payment is required to prepare you order, you can pay
-          it by using the add to cart button.
-        </p>
-        <p>
-          **The quote will be qualified once we confirm your order and
-          installation requirements with you in 1 to 2 business days.
+        <p class="yellow">
+          *We require a $25 down-payment to start work on your order. The
+          remainder can be payed when we deliver, or when you pickup. In
+          addition, we need 1 - 2 business days for order processing. Keep in
+          mind Orders from out of provice/country will need to be payed before
+          shipping.
         </p>
       </div>
       <v-card class="mx-auto" max-width="600">
@@ -336,6 +346,7 @@ export default {
         "Other",
       ],
       pickup: "",
+      payNow: ["Yes", "No"],
     },
     currentId: "someid1",
     isSurface: "",
@@ -343,6 +354,7 @@ export default {
     isHeight: "",
     isInstall: "",
     isLocation: "",
+    ispayNow: "",
     overlay: "",
 
     cost: 0,
