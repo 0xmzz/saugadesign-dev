@@ -7,7 +7,7 @@
           :repeat="0"
           :shuffle="false"
           initial-action="typing"
-          :pre-type-delay="100"
+          :pre-type-delay="2000"
           :type-delay="50"
           :pre-erase-delay="166"
           :erase-delay="60"
@@ -21,7 +21,7 @@
           :repeat="0"
           :shuffle="false"
           initial-action="typing"
-          :pre-type-delay="2300"
+          :pre-type-delay="3300"
           :type-delay="50"
           :pre-erase-delay="166"
           :erase-delay="60"
@@ -67,17 +67,12 @@
 
             <h4>Font offerings</h4>
 
-            <v-radio-group
-              text-align:center
-              class="radio"
-              v-model="radio.value"
-              :mandatory="true"
-            >
+            <v-radio-group text-align:center class="radio" v-model="radio.value" :mandatory="true">
               <div class="overline mb-3">Classic</div>
               <v-row>
                 <v-radio class="radio-1" label="Edward" value="1" id="one" />
 
-                <v-radio class="radio-2" label="Script MT Bold" value="2" />
+                <v-radio class="radio-2" label="ALS" value="2" />
 
                 <v-radio class="radio-6" label="Aerolite" value="6" />
               </v-row>
@@ -87,7 +82,7 @@
                 <v-radio class="radio-4" label="Slimlines" value="4" />
 
                 <v-radio class="radio-5" label="COPASETIC" value="5" />
-                <v-radio class="radio-3" label="Gessele" value="3" />
+                <v-radio class="radio-3" label="Kavo" value="3" />
               </v-row>
             </v-radio-group>
 
@@ -175,7 +170,7 @@
             id="price"
             class="input"
             label="Quoted: $"
-            v-model="calcuateCost"
+            v-model="calculateCost"
             hide-details="auto"
             readonly
           ></v-text-field>
@@ -187,7 +182,7 @@
               label="Pay later?"
               dense
             ></v-checkbox>
-          </v-row> -->
+          </v-row>-->
         </v-col>
 
         <v-card-actions>
@@ -209,7 +204,7 @@
             data-item-custom2-required="true"
             :data-item-custom2-value="items.isColor.color"
             data-item-custom3-name="Font Choice"
-            data-item-custom3-options="Edward|Script|Gessele|Slimlines|Copasetic|Aerolite"
+            data-item-custom3-options="Edward|Script|Kavo|Slimlines|Copasetic|Aerolite"
             data-item-custom3-required="true"
             :data-item-custom3-value="font"
             data-item-custom5-name="Surface Applied on"
@@ -230,22 +225,18 @@
             :data-item-custom10-value="isFinish"
             data-item-custom10-options="Glossy|Matte +$10"
             data-item-custom11-name="Quoted"
-            :data-item-custom11-value="'$' + calcuateCost"
+            :data-item-custom11-value="'$' + calculateCost"
             data-item-custom8-name="Phone Number"
             data-item-custom8-required="true"
-          >
-            *Add to cart</v-btn
-          >
+          >*Add to cart</v-btn>
           <!-- <v-btn color="success" outlined>Add to Cart</v-btn> -->
         </v-card-actions>
       </v-row>
       <div>
         <p class="yellow">
           *We require a $25 down-payment to start work on your order. The
-          remainder can be payed when we deliver, or when you pickup. In
-          addition, we need 1 - 2 business days for order processing. Keep in
-          mind Orders from out of provice/country will need to be payed before
-          shipping.
+          remainder can be payed upon delivery/pickup. Out of region orders will need to be fully payed before
+          shipping. We take 1 - 2 business days to process your order.
         </p>
       </div>
       <v-card class="mx-auto" max-width="600">
@@ -257,6 +248,13 @@
           :items="[
             {
               id: 'someid1',
+              src:
+                'https://github.com/zubairzia0/saugasigns/blob/master/assets/york.jpeg?raw=true',
+              thumbnail:
+                'https://github.com/zubairzia0/saugasigns/blob/master/assets/york.jpeg?raw=true',
+            },
+             {
+              id: 'someid8',
               src:
                 'https://github.com/zubairzia0/saugasigns/blob/master/assets/Crosscurrent2.jpeg?raw=true',
               thumbnail:
@@ -304,6 +302,7 @@
               thumbnail:
                 'https://github.com/zubairzia0/saugasigns/blob/master/assets/wendron.jpeg?raw=true',
             },
+           
           ]"
         />
       </v-card>
@@ -335,7 +334,7 @@ export default {
       matte: false,
       surface: ["Brick", "Stucco", "Stone", "Other"],
       finish: ["Glossy", "Matte +$10"],
-      height: ["8.5 Inch", "9.5 Inch", "10.5 Inch"],
+      height: ["8.5 Inch", "9.5 Inch +$10", "10.5 Inch +$20"],
       install: ["Yes", "No"],
       location: [
         "Halton +$80",
@@ -352,6 +351,7 @@ export default {
     isSurface: "",
     isFinish: "",
     isHeight: "",
+
     isInstall: "",
     isLocation: "",
     ispayNow: "",
@@ -365,64 +365,85 @@ export default {
   }),
 
   computed: {
-    letters: function() {
-      return this.overlay.length;
+    LetterHeight: function () {
+      if (this.isHeight == "9.5 Inch +$10") {
+        return 10;
+      } else if (this.isHeight == "10.5 Inch +$20") {
+        return 20;
+      }
+      return 0;
     },
 
-    colorIs: function() {
-      return this.isColor.color;
-    },
-
-    calcuateCost: function() {
+    LocationPrice: function () {
       if (this.isFinish == "Matte +$10") {
         if (
           (this.isInstall == "Yes" && this.isLocation == "Halton +$80") ||
           (this.isInstall == "Yes" && this.isLocation == "Peel+$80")
         ) {
-          return this.cost + this.overlay.length * 7 + 10 + 80;
+          return 90;
         } else if (
           (this.isInstall == "Yes" &&
             this.isLocation == "City of Toronto +$90") ||
           (this.isInstall == "Yes" && this.isLocation == "York +$90")
         ) {
-          return this.cost + this.overlay.length * 7 + 10 + 90;
+          return 100;
         } else if (
           this.isInstall == "Yes" &&
           this.isLocation == "Durham +$100"
         ) {
-          return this.cost + this.overlay.length * 7 + 10 + 100;
+          return 110;
         } else {
-          return this.cost + this.overlay.length * 7 + 10;
+          return 10;
         }
       } else {
         if (
           (this.isInstall == "Yes" && this.isLocation == "Halton +$80") ||
           (this.isInstall == "Yes" && this.isLocation == "Peel+$80")
         ) {
-          return this.cost + this.overlay.length * 7 + 80;
+          return 80;
         } else if (
           (this.isInstall == "Yes" &&
             this.isLocation == "City of Toronto +$90") ||
           (this.isInstall == "Yes" && this.isLocation == "York +$90")
         ) {
-          return this.cost + this.overlay.length * 7 + 90;
+          return 90;
         } else if (
           this.isInstall == "Yes" &&
           this.isLocation == "Durham +$100"
         ) {
-          return this.cost + this.overlay.length * 7 + 100;
-        } else {
-          return this.cost + this.overlay.length * 7;
+          return 100;
         }
+        return 0;
       }
     },
-    font: function() {
+
+    letters: function () {
+      return this.overlay.length;
+    },
+
+    colorIs: function () {
+      return this.isColor.color;
+    },
+
+    calculateCost: function () {
+      var overlayText = this.overlay;
+      var rmSpace = overlayText.split(" ").join("");
+
+      var costDec =
+        this.cost +
+        this.LetterHeight +
+        this.LocationPrice +
+        rmSpace.length * 6.79;
+      return costDec.toFixed(2);
+    },
+
+    font: function () {
       if (this.radio.value == 1) {
         return "Edward";
       } else if (this.radio.value == 2) {
         return "Script";
       } else if (this.radio.value == 3) {
-        return "Gessele";
+        return "Kavo";
       } else if (this.radio.value == 4) {
         return "Slimlines";
       } else if (this.radio.value == 5) {
@@ -433,9 +454,6 @@ export default {
         return "";
       }
     },
-    // methods: {
-
-    //   },
   },
 };
 </script>
@@ -508,12 +526,12 @@ export default {
   font-family: "edwardian_alternatebold";
 }
 @font-face {
-  src: url(../../fonts/ScriptMTBold.ttf) format("truetype");
-  font-family: "ScriptMTBold";
+  src: url(../../fonts/alsscrp.ttf) format("truetype");
+  font-family: "Script";
 }
 @font-face {
-  src: url(../../fonts/Gessele.woff) format("woff");
-  font-family: "Gessele";
+  src: url(../../fonts/Kavo.otf);
+  font-family: "Kavo";
 }
 @font-face {
   src: url(../../fonts/Slimlines.ttf) format("truetype");
@@ -535,12 +553,12 @@ export default {
 }
 .radio-2 >>> label {
   font-size: 3vw;
-  font-family: "ScriptMTBold", Arial, sans-serif;
+  font-family: "Script", Arial, sans-serif;
+  font-weight: bolder;
 }
 .radio-3 >>> label {
   font-size: 4vw;
-  font-family: "Gessele", Helvetica, sans-serif;
-  font-weight: bolder;
+  font-family: "Kavo", Helvetica, sans-serif;
 }
 .radio-4 >>> label {
   font-size: 3vw;
@@ -567,14 +585,14 @@ export default {
 }
 
 .Script {
-  font-family: "ScriptMTBold";
-
+  font-family: "Script";
+  font-weight: bolder;
   text-align: center;
 }
-.Gessele {
-  font-family: "Gessele";
+.Kavo {
+  font-family: "Kavo";
+  font-weight: bold;
 
-  font-weight: bolder;
   text-align: center;
 }
 .Slimlines {
