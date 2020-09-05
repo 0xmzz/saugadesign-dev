@@ -218,7 +218,7 @@
             data-item-custom7-options="None|Halton +$80|Peel+$80|City of Toronto +$90|York +$90|Durham +$100|Other"
             :data-item-custom7-value="isLocation"
             data-item-custom9-name="Letter Height"
-            data-item-custom9-options="8.5 Inch|9.5 Inch|10.5 Inch"
+            data-item-custom9-options="8.5 Inch|9.5 Inch +$10|10.5 Inch +$20"
             data-item-custom9-required="true"
             :data-item-custom9-value="isHeight"
             data-item-custom10-name="Acrylic Finish"
