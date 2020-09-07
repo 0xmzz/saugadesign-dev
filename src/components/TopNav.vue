@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-app-bar>
-      <v-toolbar-title>Saugadesign</v-toolbar-title>
+      <v-toolbar-title>Saugadesign - Custom Home Address signs</v-toolbar-title>
 
       <v-spacer></v-spacer>
 

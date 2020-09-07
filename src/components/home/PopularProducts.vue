@@ -1,8 +1,9 @@
 <template>
   <v-container>
-    <v-card outlined class="mx-auto" color="white">
-      <v-img src="@/assets/house.jpg">
-        <vue-typer
+    <v-card class="container">
+      <v-img src="@/assets/house.jpg" aspect-ratio="3">
+        <h1 class="vue-typer">Welcome to Sauga Design!</h1>
+        <!-- <vue-typer
           :text="['Welcome to Sauga Design!']"
           :repeat="0"
           :shuffle="false"
@@ -15,13 +16,13 @@
           :erase-on-complete="false"
           caret-animation="expand"
           class="vue-typer"
-        ></vue-typer>
+        ></vue-typer>-->
         <vue-typer
           :text="['Get a quote and place an order below']"
           :repeat="0"
           :shuffle="false"
           initial-action="typing"
-          :pre-type-delay="3300"
+          :pre-type-delay="2600"
           :type-delay="50"
           :pre-erase-delay="166"
           :erase-delay="60"
@@ -32,14 +33,14 @@
         ></vue-typer>
         <v-row align="end" :class="font">
           <vue-typer
-            :text="['1234 your street']"
+            :text="['123 Address Sign']"
             :repeat="0"
             :shuffle="false"
             initial-action="typing"
-            :pre-type-delay="5300"
+            :pre-type-delay="5200"
             :type-delay="100"
-            :pre-erase-delay="166"
-            :erase-delay="60"
+            :pre-erase-delay="1500"
+            :erase-delay="200"
             erase-style="backspace"
             :erase-on-complete="false"
             caret-animation="expand"
@@ -49,23 +50,16 @@
       </v-img>
 
       <div>
-        <h3>Sign Preview:</h3>
-
-        <div class="main2">
-          <v-card :class="font">{{ overlay }}</v-card>
-        </div>
-      </div>
-      <div>
         <v-row>
           <v-col>
             <v-text-field
-              label="Enter Address Sign"
+              label="Enter Address Sign here!"
               class="input"
               v-model.trim="overlay"
               hide-details="auto"
             ></v-text-field>
 
-            <h4>Font offerings</h4>
+            <h2>Select a Font</h2>
 
             <v-radio-group text-align:center class="radio" v-model="radio.value" :mandatory="true">
               <div class="overline mb-3">Classic</div>
@@ -85,80 +79,109 @@
                 <v-radio class="radio-3" label="Kavo" value="3" />
               </v-row>
             </v-radio-group>
+            <div>
+              <h2>Sign Preview:</h2>
 
-            <div class="selection">
-              <v-row sm="2">
-                <v-select
-                  id="colour"
-                  v-model="items.isColor.color"
-                  :items="items.colours"
-                  :item-value="items.colours.color"
-                  item-text="color"
-                  label="Acrylic Colour"
-                  dense
-                ></v-select>
-              </v-row>
-              <v-row>
-                <template v-if="items.isColor.color === 'Black'">
-                  <v-select
-                    v-model="isFinish"
-                    :items="items.finish"
-                    :item-value="items.finish"
-                    label="Acrylic Finish"
-                    dense
-                  ></v-select>
-                </template>
-              </v-row>
-              <v-row>
-                <v-select
-                  v-model="isSurface"
-                  :items="items.surface"
-                  :item-value="items.surface"
-                  label="Surface applied on"
-                  dense
-                ></v-select>
-              </v-row>
-
-              <v-row>
-                <v-select
-                  v-model="isHeight"
-                  :items="items.height"
-                  :item-value="items.height"
-                  label="Letter Height (Capital Letter)"
-                  dense
-                ></v-select>
-              </v-row>
-              <v-row>
-                <v-select
-                  v-model="isInstall"
-                  :items="items.install"
-                  :item-value="items.install"
-                  label="Installation Required?"
-                  dense
-                ></v-select>
-              </v-row>
-              <template v-if="isInstall === 'Yes'">
-                <v-select
-                  v-model="isLocation"
-                  :items="items.location"
-                  :item-value="items.location"
-                  label="Installation Quote by Region"
-                  dense
-                ></v-select>
-                <div class="blue">
-                  Please note that we do not install signs beyond 12 feet of
-                  height
-                </div>
-              </template>
-
-              <template v-if="isLocation === 'Other' && isInstall === 'Yes'">
-                <div class="red">
-                  We only provide quotes for installations within the GTA
-                  region. If other is selected we can discuss your installation
-                  options when we reach out to you. if you have any questions click on the chat bubble on the bottom right and leave a message. You can also email us at saugadesign@gmail.com.
-                </div>
-              </template>
+              <div class="main2">
+                <v-card :class="font">{{ overlay }}</v-card>
+              </div>
             </div>
+            <v-card>
+              <div class="container" >
+                <label></label>
+                <div class="selection">
+                  <v-row sm="2">
+                    <v-select
+                      id="colour"
+                      v-model="items.isColor.color"
+                      :items="items.colours"
+                      :item-value="items.colours.color"
+                      item-text="color"
+                      label="Sign Colour (Acrylic)"
+                      dense
+                    ></v-select>
+                  </v-row>
+                  <v-row>
+                    <template v-if="items.isColor.color === 'Black'">
+                      <v-select
+                        v-model="isFinish"
+                        :items="items.finish"
+                        :item-value="items.finish"
+                        label="Acrylic Finish"
+                        dense
+                      ></v-select>
+                    </template>
+                  </v-row>
+                  <v-row>
+                    <v-select
+                      v-model="isSurface"
+                      :items="items.surface"
+                      :item-value="items.surface"
+                      label="Surface applied on"
+                      dense
+                    ></v-select>
+                  </v-row>
+
+                  <v-row>
+                    <v-select
+                      v-model="isHeight"
+                      :items="items.height"
+                      :item-value="items.height"
+                      label="Letter Height (Capital Letter)"
+                      dense
+                    ></v-select>
+                  </v-row>
+                  <v-row>
+                    <v-select
+                      v-model="isInstall"
+                      :items="items.install"
+                      :item-value="items.install"
+                      label="Installation Required?"
+                      dense
+                    ></v-select>
+                  </v-row>
+                  <template v-if="isInstall === 'Yes'">
+                    <v-select
+                      v-model="isLocation"
+                      :items="items.location"
+                      :item-value="items.location"
+                      label="Installation Quote by Region"
+                      dense
+                    ></v-select>
+                    <div class="blue">
+                      Please note that we do not install signs beyond 12 feet of
+                      height
+                    </div>
+                  </template>
+                  <template v-if="isLocation === 'Other' && isInstall === 'Yes'">
+                    <div class="red">
+                      We only provide quotes for installations within the GTA
+                      region. If other is selected we can discuss your installation
+                      options when we reach out to you. if you have any questions click on the chat bubble on the bottom right and leave a message. You can also email us at saugadesign@gmail.com.
+                    </div>
+                  </template>
+                  <template v-if="isInstall === 'No'">
+                    <v-select
+                      v-model="isDeliver"
+                      :items="items.deliver"
+                      :item-value="items.deliver"
+                      label="Delivery options"
+                      dense
+                    ></v-select>
+
+                    <div
+                      class="blue"
+                      v-if="isDeliver === 'Pickup'"
+                    >We will contact you to let you know when the sign will be ready for pickup. Pickup address: 6973 Lisanne Crt, Mississauga, ON L5N6Z7.</div>
+
+                    <div
+                      class="blue"
+                      v-if="isDeliver === 'Shipping'"
+                    >After you place an order we will contact you via your phone and/or email address which you will provide during checkout and discuss your shipping options along with finalizing your order</div>
+                  </template>
+                </div>
+              </div>
+            </v-card>
           </v-col>
         </v-row>
       </div>
@@ -228,6 +251,9 @@
             :data-item-custom11-value="'$' + calculateCost"
             data-item-custom8-name="Phone Number"
             data-item-custom8-required="true"
+            data-item-custom12-name="Delivery Options"
+            :data-item-custom12-value="isDeliver"
+            data-item-custom12-options="Pickup|Shipping"
           >*Add to cart</v-btn>
           <!-- <v-btn color="success" outlined>Add to Cart</v-btn> -->
         </v-card-actions>
@@ -346,11 +372,13 @@ export default {
       ],
       pickup: "",
       payNow: ["Yes", "No"],
+      deliver: ["Pickup", "Shipping"],
     },
     currentId: "someid1",
     isSurface: "",
     isFinish: "",
     isHeight: "",
+    isDeliver: "",
 
     isInstall: "",
     isLocation: "",
@@ -481,9 +509,9 @@ export default {
   text-transform: capitalize;
 
   font-size: 3.2vw;
-  top: 0%;
-  right: 20%;
-  color: #607d8b;
+  top: 8%;
+  right: 22%;
+  color: #000000;
 }
 
 .vue-typer2 {
@@ -492,9 +520,10 @@ export default {
   position: absolute;
 
   text-transform: capitalize;
-  font-size: 2.5vw;
-  top: 8%;
-  right: 17%;
+  font-size: 2vw;
+  top: 22%;
+  right: 21%;
+  font-weight: bold;
 }
 .Banner1 {
   font-family: "Slimlines";
@@ -503,7 +532,7 @@ export default {
   top: 52%;
   right: 56%;
 
-  font-size: 2.2vw;
+  font-size: 2.3vw;
 
   font-weight: bolder;
 }
