@@ -16,7 +16,7 @@
         that little upgrades can make a substantial difference and our home
         signs do just that. We hope you enjoy our products as much as we enjoy
         creating and offering them to you. Let us help you create pride of
-        ownership in your home and put your best foot forward with SaugaDesigns.
+        ownership in your home and put your best foot forward with Sauga Design.
       </p>
       <h3>
         Also, if you want to talk just click on the chat bubble on the bottom

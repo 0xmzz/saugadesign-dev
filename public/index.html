@@ -25,17 +25,52 @@
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div hidden>
-      <button
-          id="custom-sign"
-          class="snipcart-add-item"
-          data-item-id="custom-sign"
-          data-item-price="25.00"
-          data-item-url="https://saugadesign.com"
-          data-item-description="Custom made house address sign"
-          data-item-name="Custom Sign"
-         
-        >
-        </button>
+   <v-btn
+                     
+                      id="custom-sign"
+                      class="snipcart-add-item"
+                      data-item-id="custom-sign"
+                      data-item-price="0.00"
+                      data-item-url="https://saugadesign.com"
+                      data-item-description="Custom made house address sign"
+                      data-item-image="/assets/SaugaSignslogo.PNG"
+                      data-item-name="Custom Sign"
+                      data-item-custom1-name="Address Sign Text (do not change in cart)"
+                      data-item-custom1-type="textarea"
+                      data-item-custom1-required="true"
+                      :data-item-custom1-value="overlay"
+                      data-item-custom10-name="Number of digits + letters in Order (do not change this field)"
+                      :data-item-custom10-value="isNumber"
+                      data-item-custom10-options="1[+6.78]|2[+13.56]|3[+20.34]|4[+27.12]|5[+33.9]|6[+40.68]|7[+47.46]
+                      |8[+54.24]|9[+54.24]|10[+61.02]|11[+74.58]|12[+81.36]|13[+88.14]|14[+94.92]|15[+101.7]|16[+108.48]|17[+115.26]|18[+122.04]|19[+128.82]|20[+135.6]|21[+142.38]
+                      |22[+149.16]|23[+155.94]|24[+162.72]|25[+169.5]|26[+176.28]|27[+183.06]|28[+189.84]|29[+196.62]|30[+203.4]"
+                      data-item-custom2-name="Acrylic Colour"
+                      data-item-custom2-options="Black|Black Matte +$10[+10]|Red|White|Grey"
+                      data-item-custom2-required="true"
+                      :data-item-custom2-value="items.isColor.color"
+                      data-item-custom4-name="Font Choice"
+                      data-item-custom4-options="Edward|Script|ALS|Kavo|Slimlines|Copasetic|Aerolite|Dancing|Custom"
+                      data-item-custom4-required="true"
+                      :data-item-custom4-value="font"
+                      data-item-custom9-name="Letter Height"
+                      data-item-custom9-options="8.5 Inch|9.5 Inch +$10[+10]|10.5 Inch +$20[+20]|Custom"
+                      data-item-custom9-required="true"
+                      :data-item-custom9-value="isHeight"
+                      data-item-custom6-name="Installation"
+                      data-item-custom6-options="No|Yes"
+                      data-item-custom6-required="true"
+                      :data-item-custom6-value="isInstall"
+                      data-item-custom7-name="Installation Quote by Region"
+                      data-item-custom7-options="N/A|Halton +$80[+80]|Peel +$80[+80]|City of Toronto +$100[+100]|York +$100[+100]|Durham +$120[+120]|Hamilton +$100[+100]|Kitchner/Waterloo/Guelph/Cambridge +$120[+120]|Other"
+                      :data-item-custom7-value="isLocation"
+                      data-item-custom8-name="Phone Number"
+                      data-item-custom8-required="true"
+                      data-item-custom13-name="Any Special Instructions/Requests?"
+                      data-item-custom13-type="textarea"
+                      :data-item-custom13-value="isInstructions"
+                      >*Add to cart</v-btn
+                    >
+    
 
         </div>
     <div id="app"></div>
