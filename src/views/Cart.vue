@@ -1,15 +1,9 @@
 <template>
-  <div>Cart</div>
+  <head> </head>
 </template>
 
 <script>
-const ProductList = require('../components/cart/ProductList')
-const CheckoutBox = require('../components/cart/CheckoutBox')
-
 module.exports = {
-  components: {
-    ProductList,
-    CheckoutBox
-  }
-}
+  components: {},
+};
 </script>

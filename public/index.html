@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+   <link rel="preconnect" href="https://cdn.snipcart.com">
+<link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.0.22/default/snipcart.css" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    
   <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-176794596-1"></script>
 <script>
@@ -11,13 +19,7 @@
   gtag('config', 'UA-176794596-1');
 </script>
 
-  <link rel="preconnect" href="https://cdn.snipcart.com">
-<link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.0.18/default/snipcart.css" />
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
+ 
   </head>
   <body>
   
@@ -41,15 +43,15 @@
                       :data-item-custom1-value="overlay"
                       data-item-custom10-name="Number of digits + letters in Order (do not change this field)"
                       :data-item-custom10-value="isNumber"
-                      data-item-custom10-options="1[+6.78]|2[+13.56]|3[+20.34]|4[+27.12]|5[+33.9]|6[+40.68]|7[+47.46]
-                      |8[+54.24]|9[+54.24]|10[+61.02]|11[+74.58]|12[+81.36]|13[+88.14]|14[+94.92]|15[+101.7]|16[+108.48]|17[+115.26]|18[+122.04]|19[+128.82]|20[+135.6]|21[+142.38]
-                      |22[+149.16]|23[+155.94]|24[+162.72]|25[+169.5]|26[+176.28]|27[+183.06]|28[+189.84]|29[+196.62]|30[+203.4]"
+                      data-item-custom10-options="1[+7.65]|2[+15.3]|3[+22.95]|4[+30.6]|5[+38.25]|6[+45.9]|7[+53.55]
+                      |8[+61.2]|9[+68.85]|10[+76.5]|11[+84.15]|12[+91.8]|13[+99.45]|14[+107.1]|15[+114.75]|16[+122.4]|17[+130.05]|18[+137.7]|19[+145.35]|20[+153]|21[+160.65]
+                      |22[+168.3]|23[+175.9]|24[+183.6]|25[+191.25]|26[+198.9]|27[+206.55]|28[+214.2]|29[+221.85]|30[+229.5]"
                       data-item-custom2-name="Acrylic Colour"
-                      data-item-custom2-options="Black|Black Matte +$10[+10]|Red|White|Grey"
+                      data-item-custom2-options="Black Glossy|Black Matte +$10[+10]|Red Glossy|White Glossy|Grey Glossy"
                       data-item-custom2-required="true"
                       :data-item-custom2-value="items.isColor.color"
                       data-item-custom4-name="Font Choice"
-                      data-item-custom4-options="Edward|Script|ALS|Kavo|Slimlines|Copasetic|Aerolite|Dancing|Custom"
+                      data-item-custom4-options="Edward|Script|Birds|Kavo|Slimlines|Copasetic|Aerolite|Dancing|Custom"
                       data-item-custom4-required="true"
                       :data-item-custom4-value="font"
                       data-item-custom9-name="Letter Height"
@@ -61,7 +63,7 @@
                       data-item-custom6-required="true"
                       :data-item-custom6-value="isInstall"
                       data-item-custom7-name="Installation Quote by Region"
-                      data-item-custom7-options="N/A|Halton +$80[+80]|Peel +$80[+80]|City of Toronto +$100[+100]|York +$100[+100]|Durham +$120[+120]|Hamilton +$100[+100]|Kitchner/Waterloo/Guelph/Cambridge +$120[+120]|Other"
+                       data-item-custom7-options="N/A|Halton +$90[+90]|Peel +$90[+90]|City of Toronto +$110[+110]|York +$110[+110]|Durham +$130[+130]|Hamilton +$110[+110]|Kitchener/Waterloo/Guelph/Cambridge/Other +$130[+130]"
                       :data-item-custom7-value="isLocation"
                       data-item-custom8-name="Phone Number"
                       data-item-custom8-required="true"
@@ -73,11 +75,16 @@
     
 
         </div>
+
     <div id="app"></div>
     <!-- built files will be auto injected -->
+    
   </body>
 <!--Start of Tawk.to Script-->
+
+
 <script type="text/javascript">
+
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
 var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
@@ -90,7 +97,8 @@ s0.parentNode.insertBefore(s1,s0);
 </script>
 <!--End of Tawk.to Script-->
   <div hidden id="snipcart" data-api-key="ZTY3MjczMmQtOGU2ZC00YTI3LTgxZTItMTQxYjcxMTM3N2M5NjM3MzMzODI4NTM5NjgyMzkx"></div>
-<script src="https://cdn.snipcart.com/themes/v3.0.18/default/snipcart.js"></script>
+<script src="https://cdn.snipcart.com/themes/v3.0.22/default/snipcart.js"></script>
 
 </script>
 </html>
+

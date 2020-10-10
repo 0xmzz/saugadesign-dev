@@ -3,20 +3,7 @@
     <v-card class="container">
       <v-img src="@/assets/house.jpg" aspect-ratio="3">
         <h1 class="vue-typer">Welcome to Sauga Design!</h1>
-        <!-- <vue-typer
-          :text="['Welcome to Sauga Design!']"
-          :repeat="0"
-          :shuffle="false"
-          initial-action="typing"
-          :pre-type-delay="2000"
-          :type-delay="50"
-          :pre-erase-delay="166"
-          :erase-delay="60"
-          erase-style="backspace"
-          :erase-on-complete="false"
-          caret-animation="expand"
-          class="vue-typer"
-        ></vue-typer>-->
+
         <vue-typer
           :text="['Get a quote and place an order below']"
           :repeat="0"
@@ -33,7 +20,7 @@
         ></vue-typer>
         <v-row align="end" :class="font">
           <vue-typer
-            :text="['123 Address Sign']"
+            :text="['123 Your Street']"
             :repeat="0"
             :shuffle="false"
             initial-action="typing"
@@ -46,81 +33,93 @@
             caret-animation="expand"
             class="Banner1"
           ></vue-typer>
+          <v-img
+            class="warrenty"
+            max-width="65"
+            max-height="75"
+            src="../../assets/30-years-warranty.png"
+          />
         </v-row>
       </v-img>
       <v-form ref="form" v-model="valid" lazy-validation>
         <div>
           <v-row>
             <v-col>
-              <v-card>
-                <h2>Font Options</h2>
-
-                <v-radio-group
-                  text-align:center
-                  class="radio"
-                  v-model="radio.value"
-                  :mandatory="true"
-                >
-                  <div class="overline mb-3">Classic</div>
-                  <v-row class="container" dense>
-                    <v-radio
-                      class="radio-1"
-                      label="Edward"
-                      value="1"
-                      id="one"
-                    />
-
-                    <v-radio class="radio-2" label="ALS" value="2" />
-
-                    <v-radio class="radio-6" label="Aerolite" value="6" />
-                    <v-radio class="radio-7" label="Script" value="7" />
-                  </v-row>
-
-                  <div class="overline mb-3">Modern</div>
-                  <v-row class="container" dense>
-                    <v-radio class="radio-4" label="Slimlines" value="4" />
-
-                    <v-radio class="radio-5" label="COPASETIC" value="5" />
-                    <v-radio class="radio-3" label="Kavo" value="3" />
-                    <v-radio class="radio-9" label="Dancing" value="9" />
-                  </v-row>
-                  <div class="overline mb-3">Custom</div>
-                  <v-row class="container" dense>
-                    <v-radio class="radio-8" label="Custom Font" value="8" />
-                    <div class="container">
-                      <v-text-field
-                        v-model="isInstructions"
-                        label="Enter font name (Preview will not be availaible, we will contact you before finalizing)"
-                        v-if="radio.value == '8'"
-                        :rules="Rules"
-                        required
-                      >
-                      </v-text-field>
-                    </div>
-                  </v-row>
-                </v-radio-group>
-              </v-card>
               <v-divider></v-divider>
               <v-card>
                 <div>
-                  <h3 class="container">Sign Preview:</h3>
+                  <div class="container">
+                    <v-text-field
+                      label="Enter your Address Sign!"
+                      class="input"
+                      v-model.trim="overlay"
+                      hide-details="auto"
+                      :rules="Rules"
+                      ref="Address"
+                      required
+                    ></v-text-field>
+                  </div>
 
-                  <div class="main2">
-                    <v-card :class="font">{{ overlay }}</v-card>
+                  <div class="brick">
+                    <div class="main2">
+                      <v-card class="bb" :class="font"> {{ overlay }}</v-card>
+                    </div>
+                    <v-card>
+                      <div><b>Approximate Width: </b> {{ Compensate }}</div>
+                      <div><b>Height:</b> {{ isHeight }}</div></v-card
+                    >
                   </div>
                 </div>
 
-                <div class="container">
-                  <v-text-field
-                    label="Enter Address Sign here!"
-                    class="input"
-                    v-model.trim="overlay"
-                    hide-details="auto"
-                    :rules="Rules"
-                    ref="Address"
-                    required
-                  ></v-text-field>
-                </div>
+                <v-card>
+                  <h3>Font offerings</h3>
+
+                  <v-radio-group
+                    text-align:center
+                    class="radio"
+                    v-model="radio.value"
+                    :mandatory="true"
+                  >
+                    <v-row class="container" dense>
+                      <v-radio
+                        class="radio-1"
+                        label="Edward"
+                        value="1"
+                        id="one"
+                      />
+
+                      <v-radio
+                        class="radio-2"
+                        label="Birds of Paradise"
+                        value="2"
+                      />
+
+                      <v-radio class="radio-6" label="Aerolite" value="6" />
+                      <v-radio class="radio-7" label="Script" value="7" />
+                    </v-row>
+
+                    <v-row class="container" dense>
+                      <v-radio class="radio-4" label="Slimlines" value="4" />
+
+                      <v-radio class="radio-5" label="COPASETIC" value="5" />
+                      <v-radio class="radio-3" label="Kavo" value="3" />
+                      <v-radio class="radio-9" label="Dancing" value="9" />
+                    </v-row>
+
+                    <v-row class="container" dense>
+                      <v-radio class="radio-8" label="Custom Font" value="8" />
+                      <div class="container">
+                        <v-text-field
+                          v-model="isInstructions"
+                          label="Enter the font name (Preview will not be availaible)"
+                          v-if="radio.value == '8'"
+                          :rules="Rules"
+                          required
+                        ></v-text-field>
+                      </div>
+                    </v-row>
+                  </v-radio-group>
+                </v-card>
 
                 <div class="container">
                   <div class="selection">
@@ -160,6 +159,7 @@
                         required
                       ></v-select>
                     </v-row>
+
                     <template v-if="isInstall === 'Yes'">
                       <v-select
                         v-model="isLocation"
@@ -174,87 +174,93 @@
                         Please note that we do not install signs beyond 12 feet
                         of height
                       </div>
+                      <div class="red">
+                        We offer installation service only within the GTHA and
+                        Wellington county (Kitchener, Waterloo, Cambridge,
+                        Guelph). If you have any questions click on the chat
+                        bubble on the bottom right and leave a message. You can
+                        also email us at saugadesign@gmail.com.
+                      </div>
                       <v-img
                         aspect-ratio="2"
                         src="https://github.com/zubairzia0/SaugaDesign-Site/blob/master/assets/GTA.png?raw=true"
                       ></v-img>
                     </template>
-                    <template
-                      v-if="isLocation === 'Other' && isInstall === 'Yes'"
-                    >
-                      <div class="red">
-                        We only provide quotes for installations within the GTA
-                        region. If other is selected we can discuss your
-                        installation options when we reach out to you. if you
-                        have any questions click on the chat bubble on the
-                        bottom right and leave a message. You can also email us
-                        at saugadesign@gmail.com.
-                      </div>
-                    </template>
 
-                    <template v-if="isInstall === 'No'"> </template>
+                    <template v-if="isInstall === 'No'"></template>
                     <v-row>
                       <v-col>
                         <v-text-field
                           id="price"
                           class="input"
-                          label="Quoted: $"
+                          label="Quoted: CAD"
                           v-model="calculateCost"
                           hide-details="auto"
                           readonly
                         ></v-text-field>
                       </v-col>
                     </v-row>
-                    <v-btn
-                      :disabled="!valid"
-                      color="success"
-                      @click="validate"
-                      id="custom-sign"
-                      :class="validater()"
-                      data-item-id="custom-sign"
-                      data-item-price="0.00"
-                      data-item-url="https://saugadesign.com"
-                      data-item-description="Custom made house address sign"
-                      data-item-image="/assets/SaugaSignslogo.PNG"
-                      data-item-name="Custom Sign"
-                      data-item-custom1-name="Address Sign Text (do not change in cart)"
-                      data-item-custom1-type="textarea"
-                      data-item-custom1-required="true"
-                      :data-item-custom1-value="overlay"
-                      data-item-custom10-name="Number of digits + letters in Order (do not change this field)"
-                      :data-item-custom10-value="isNumber"
-                      data-item-custom10-options="1[+6.78]|2[+13.56]|3[+20.34]|4[+27.12]|5[+33.9]|6[+40.68]|7[+47.46]
-                      |8[+54.24]|9[+54.24]|10[+61.02]|11[+74.58]|12[+81.36]|13[+88.14]|14[+94.92]|15[+101.7]|16[+108.48]|17[+115.26]|18[+122.04]|19[+128.82]|20[+135.6]|21[+142.38]
-                      |22[+149.16]|23[+155.94]|24[+162.72]|25[+169.5]|26[+176.28]|27[+183.06]|28[+189.84]|29[+196.62]|30[+203.4]"
-                      data-item-custom2-name="Acrylic Colour"
-                      data-item-custom2-options="Black|Black Matte +$10[+10]|Red|White|Grey"
-                      data-item-custom2-required="true"
-                      :data-item-custom2-value="items.isColor.color"
-                      data-item-custom4-name="Font Choice"
-                      data-item-custom4-options="Edward|Script|ALS|Kavo|Slimlines|Copasetic|Aerolite|Dancing|Custom"
-                      data-item-custom4-required="true"
-                      :data-item-custom4-value="font"
-                      data-item-custom9-name="Letter Height"
-                      data-item-custom9-options="8.5 Inch|9.5 Inch +$10[+10]|10.5 Inch +$20[+20]|Custom"
-                      data-item-custom9-required="true"
-                      :data-item-custom9-value="isHeight"
-                      data-item-custom6-name="Installation"
-                      data-item-custom6-options="No|Yes"
-                      data-item-custom6-required="true"
-                      :data-item-custom6-value="isInstall"
-                      data-item-custom7-name="Installation Quote by Region"
-                      data-item-custom7-options="N/A|Halton +$80[+80]|Peel +$80[+80]|City of Toronto +$100[+100]|York +$100[+100]|Durham +$120[+120]|Hamilton +$100[+100]|Kitchner/Waterloo/Guelph/Cambridge +$120[+120]|Other"
-                      :data-item-custom7-value="isLocation"
-                      data-item-custom8-name="Phone Number"
-                      data-item-custom8-required="true"
-                      data-item-custom13-name="Any Special Instructions/Requests?"
-                      data-item-custom13-type="textarea"
-                      :data-item-custom13-value="isInstructions"
-                      >*Add to cart</v-btn
-                    >
+
                     <div class="container" v-if="this.valid == false">
                       <p class="red">Please fill all required fields above</p>
                     </div>
+                  </div>
+                  <v-btn
+                    :disabled="!valid"
+                    color="success"
+                    @click="validate"
+                    id="custom-sign"
+                    :class="validater()"
+                    data-item-id="custom-sign"
+                    data-item-price="0.00"
+                    data-item-url="https://saugadesign.com"
+                    data-item-description="Custom made house address sign"
+                    data-item-image="https://github.com/zubairzia0/SaugaDesign-Site/blob/master/assets/SaugaSignslogo.PNG?raw=true"
+                    data-item-name="Custom Sign"
+                    data-item-custom1-name="Address Sign Text (do not change in cart)"
+                    data-item-custom1-type="textarea"
+                    data-item-custom1-required="true"
+                    :data-item-custom1-value="overlay"
+                    data-item-custom10-name="Number of digits + letters in Order (do not change this field)"
+                    :data-item-custom10-value="isNumber"
+                    data-item-custom10-options="1[+7.65]|2[+15.3]|3[+22.95]|4[+30.6]|5[+38.25]|6[+45.9]|7[+53.55]
+                      |8[+61.2]|9[+68.85]|10[+76.5]|11[+84.15]|12[+91.8]|13[+99.45]|14[+107.1]|15[+114.75]|16[+122.4]|17[+130.05]|18[+137.7]|19[+145.35]|20[+153]|21[+160.65]
+                      |22[+168.3]|23[+175.9]|24[+183.6]|25[+191.25]|26[+198.9]|27[+206.55]|28[+214.2]|29[+221.85]|30[+229.5]"
+                    data-item-custom2-name="Acrylic Colour"
+                    data-item-custom2-options="Black Glossy|Black Matte +$10[+10]|Red Glossy|White Glossy|Grey Glossy"
+                    data-item-custom2-required="true"
+                    :data-item-custom2-value="items.isColor.color"
+                    data-item-custom4-name="Font Choice"
+                    data-item-custom4-options="Edward|Script|Birds|Kavo|Slimlines|Copasetic|Aerolite|Dancing|Custom"
+                    data-item-custom4-required="true"
+                    :data-item-custom4-value="font"
+                    data-item-custom9-name="Letter Height"
+                    data-item-custom9-options="8.5 Inch|9.5 Inch +$10[+10]|10.5 Inch +$20[+20]|Custom"
+                    data-item-custom9-required="true"
+                    :data-item-custom9-value="isHeight"
+                    data-item-custom6-name="Installation"
+                    data-item-custom6-options="No|Yes"
+                    data-item-custom6-required="true"
+                    :data-item-custom6-value="isInstall"
+                    data-item-custom7-name="Installation Quote by Region"
+                    data-item-custom7-options="N/A|Halton +$90[+90]|Peel +$90[+90]|City of Toronto +$110[+110]|York +$110[+110]|Durham +$130[+130]|Hamilton +$110[+110]|Kitchener/Waterloo/Guelph/Cambridge/Other +$130[+130]"
+                    :data-item-custom7-value="isLocation"
+                    data-item-custom8-name="Phone Number"
+                    data-item-custom8-required="true"
+                    data-item-custom13-name="Any Special Instructions/Requests?"
+                    data-item-custom13-type="textarea"
+                    :data-item-custom13-value="isInstructions"
+                    data-item-has-taxes-included="true"
+                    >*Add to cart</v-btn
+                  >
+
+                  <div>
+                    <p>*Installation kit included</p>
+                    <p>
+                      Note: It will take 2-4 business days to prepare your sign
+                      for delivery/pickup, for installations we message you to
+                      book a date/time after your order is prepared.
+                    </p>
                   </div>
                 </div>
               </v-card>
@@ -262,21 +268,13 @@
           </v-row>
         </div>
 
-        <div>
-          <!-- <p class="yellow">
-            *We require a $25 down-payment to start work on your order. The
-            remainder can be payed upon delivery/pickup. Out of region orders
-            will need to be fully payed before shipping. We take 1 - 2 business
-            days to process your order.
-          </p> -->
-        </div>
         <v-divider></v-divider>
         <v-card class="mx-auto" max-width="600">
           <h2>Client Photos</h2>
           <Lingallery
             :iid.sync="currentId"
             :width="600"
-            :height="400"
+            :height="200"
             :items="[
               {
                 id: 'someid1',
@@ -295,17 +293,17 @@
               {
                 id: 'someid3',
                 src:
-                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide3.JPG?raw=true',
+                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide17.JPG?raw=true',
                 thumbnail:
-                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide3.JPG?raw=true',
+                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide17.JPG?raw=true',
               },
 
               {
                 id: 'someid4',
                 src:
-                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide4.JPG?raw=true',
+                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide18.JPG?raw=true',
                 thumbnail:
-                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide4.JPG?raw=true',
+                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide18.JPG?raw=true',
               },
               {
                 id: 'someid5',
@@ -356,18 +354,55 @@
                   'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide11.JPG?raw=true',
                 thumbnail:
                   'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide11.JPG?raw=true',
-              },{
+              },
+              {
                 id: 'someid12',
                 src:
                   'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide12.JPG?raw=true',
                 thumbnail:
                   'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide12.JPG?raw=true',
-              },{
+              },
+              {
                 id: 'someid13',
                 src:
                   'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide13.JPG?raw=true',
                 thumbnail:
                   'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide13.JPG?raw=true',
+              },
+              {
+                id: 'someid14',
+                src:
+                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide14.JPG?raw=true',
+                thumbnail:
+                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide14.JPG?raw=true',
+              },
+              {
+                id: 'someid15',
+                src:
+                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide15.JPG?raw=true',
+                thumbnail:
+                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide15.JPG?raw=true',
+              },
+              {
+                id: 'someid16',
+                src:
+                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide16.JPG?raw=true',
+                thumbnail:
+                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide16.JPG?raw=true',
+              },
+              {
+                id: 'someid17',
+                src:
+                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide3.JPG?raw=true',
+                thumbnail:
+                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide3.JPG?raw=true',
+              },
+              {
+                id: 'someid18',
+                src:
+                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide4.JPG?raw=true',
+                thumbnail:
+                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide4.JPG?raw=true',
               },
             ]"
           />
@@ -381,6 +416,8 @@
 import { VueTyper } from "vue-typer";
 import Lingallery from "lingallery";
 
+// import textMetrics from "text-metrics";
+
 export default {
   name: "App2",
 
@@ -389,31 +426,31 @@ export default {
   data: () => ({
     items: {
       colours: [
-        { color: "Black", id: 1 },
+        { color: "Black Glossy", id: 1 },
         { color: "Black Matte +$10", id: 2 },
-        { color: "Red", id: 3 },
-        { color: "White", id: 4 },
-        { color: "Grey", id: 5 },
+        { color: "Red Glossy", id: 3 },
+        { color: "White Glossy", id: 4 },
+        { color: "Grey Glossy", id: 5 },
       ],
+      images: ["../../assets/Crosscurrent.jpeg", "../../assets/faris.jpeg"],
       isColor: {
         color: "",
       },
       //   selectedOptionId: 0,
 
       matte: false,
-      surface: ["Brick", "Stucco", "Stone", "Other"],
+      // surface: ["Brick", "Stucco", "Stone", "Other"],
 
       height: ["8.5 Inch", "9.5 Inch +$10", "10.5 Inch +$20"],
       install: ["Yes", "No"],
       location: [
-        "Halton +$80",
-        "Hamilton +$100",
-        "Peel +$80",
-        "City of Toronto +$100",
-        "York +$100",
-        "Durham +$120",
-        "Kitchner/Waterloo/Guelph/Cambridge +$120",
-        "Other",
+        "Halton +$90",
+        "Hamilton +$110",
+        "Peel +$90",
+        "City of Toronto +$110",
+        "York +$110",
+        "Durham +$130",
+        "Kitchener/Waterloo/Guelph/Cambridge/Other +$130",
       ],
       pickup: "",
       payNow: ["Yes", "No"],
@@ -422,9 +459,9 @@ export default {
     Rules: [(v) => !!v || "required"],
     valid: false,
     currentId: "someid1",
-    isSurface: "",
+    // isSurface: "",
 
-    isHeight: "",
+    isHeight: "8.5 Inch",
     isDeliver: "",
 
     isInstall: "",
@@ -441,7 +478,7 @@ export default {
   }),
 
   computed: {
-    LetterHeight: function() {
+    LetterHeight: function () {
       if (this.isHeight == "9.5 Inch +$10") {
         return 10;
       } else if (this.isHeight == "10.5 Inch +$20") {
@@ -450,62 +487,63 @@ export default {
       return 0;
     },
 
-    LocationPrice: function() {
+    LocationPrice: function () {
       if (this.items.isColor.color == "Black Matte +$10") {
         if (
-          (this.isInstall == "Yes" && this.isLocation == "Halton +$80") ||
-          (this.isInstall == "Yes" && this.isLocation == "Peel +$80")
+          (this.isInstall == "Yes" && this.isLocation == "Halton +$90") ||
+          (this.isInstall == "Yes" && this.isLocation == "Peel +$90")
         ) {
-          return 90;
+          return 100;
         } else if (
           (this.isInstall == "Yes" &&
-            this.isLocation == "City of Toronto +$100") ||
-          (this.isInstall == "Yes" && this.isLocation == "York +$100") ||
-          (this.isInstall == "Yes" && this.isLocation == "Hamilton +$100")
+            this.isLocation == "City of Toronto +$110") ||
+          (this.isInstall == "Yes" && this.isLocation == "York +$110") ||
+          (this.isInstall == "Yes" && this.isLocation == "Hamilton +$110")
         ) {
-          return 110;
+          return 120;
         } else if (
-          (this.isInstall == "Yes" && this.isLocation == "Durham +$120") ||
+          (this.isInstall == "Yes" && this.isLocation == "Durham +$130") ||
           (this.isInstall == "Yes" &&
-            this.isLocation == "Kitchner/Waterloo/Guelph/Cambridge +$120")
+            this.isLocation == "Kitchener/Waterloo/Guelph/Cambridge +$130")
         ) {
-          return 130;
+          return 140;
         } else {
           return 10;
         }
       } else {
         if (
-          (this.isInstall == "Yes" && this.isLocation == "Halton +$80") ||
-          (this.isInstall == "Yes" && this.isLocation == "Peel +$80")
+          (this.isInstall == "Yes" && this.isLocation == "Halton +$90") ||
+          (this.isInstall == "Yes" && this.isLocation == "Peel +$90")
         ) {
-          return 80;
+          return 90;
         } else if (
           (this.isInstall == "Yes" &&
-            this.isLocation == "City of Toronto +$100") ||
-          (this.isInstall == "Yes" && this.isLocation == "York +$100") ||
-          (this.isInstall == "Yes" && this.isLocation == "Hamilton +$100")
+            this.isLocation == "City of Toronto +$110") ||
+          (this.isInstall == "Yes" && this.isLocation == "York +$110") ||
+          (this.isInstall == "Yes" && this.isLocation == "Hamilton +$110")
         ) {
-          return 100;
+          return 110;
         } else if (
-          (this.isInstall == "Yes" && this.isLocation == "Durham +$120") ||
+          (this.isInstall == "Yes" && this.isLocation == "Durham +$130") ||
           (this.isInstall == "Yes" &&
-            this.isLocation == "Kitchner/Waterloo/Guelph/Cambridge +$120")
+            this.isLocation ==
+              "Kitchener/Waterloo/Guelph/Cambridge/Other +$130")
         ) {
-          return 120;
+          return 130;
         }
         return 0;
       }
     },
 
-    letters: function() {
+    letters: function () {
       return this.overlay.length;
     },
 
-    colorIs: function() {
+    colorIs: function () {
       return this.isColor.color;
     },
 
-    calculateCost: function() {
+    calculateCost: function () {
       var overlayText = this.overlay;
       var rmSpace = overlayText.split(" ").join("");
 
@@ -513,22 +551,22 @@ export default {
         this.cost +
         this.LetterHeight +
         this.LocationPrice +
-        rmSpace.length * 6.78;
-      return costDec.toFixed(2);
+        rmSpace.length * 7.65;
+      return "$" + costDec.toFixed(2);
     },
-    isNumber: function() {
+    isNumber: function () {
       var overlayText = this.overlay;
       var rmSpace = overlayText.split(" ").join("");
       return rmSpace.length;
     },
 
-    font: function() {
+    font: function () {
       if (this.radio.value == 1) {
         return "Edward";
       } else if (this.radio.value == 7) {
         return "Script";
       } else if (this.radio.value == 2) {
-        return "ALS";
+        return "Birds";
       } else if (this.radio.value == 3) {
         return "Kavo";
       } else if (this.radio.value == 4) {
@@ -545,6 +583,126 @@ export default {
         return "";
       }
     },
+    getTextWidth: function () {
+      // if given, use cached canvas for better performance
+      // else, create new canvas
+      var isFont = "";
+      if (this.font == "Edward") {
+        if (this.isHeight == "9.5 Inch +$10") {
+          isFont = "15px" + " " + "Edward";
+        } else if (this.isHeight == "10.5 Inch +$20") {
+          isFont = "16.5px" + " " + "Edward";
+        } else isFont = "13.5px" + " " + "Edward";
+      } else if (this.font == "Script") {
+        if (this.isHeight == "9.5 Inch +$10") {
+          isFont = "13.42px" + " " + "Script";
+        } else if (this.isHeight == "10.5 Inch +$20") {
+          isFont = "14.83px" + " " + "Script";
+        } else isFont = "12px" + " " + "Script";
+      } else if (this.font == "Birds") {
+        if (this.isHeight == "9.5 Inch +$10") {
+          isFont = "12.4px" + " " + "Birds";
+        } else if (this.isHeight == "10.5 Inch +$20") {
+          isFont = "13.9px" + " " + "Birds";
+        } else isFont = "11.4px" + " " + "Birds";
+      } else if (this.font == "Kavo") {
+        if (this.isHeight == "9.5 Inch +$10") {
+          isFont = "13.6px" + " " + "Kavo";
+        } else if (this.isHeight == "10.5 Inch +$20") {
+          isFont = "15.1px" + " " + "Kavo";
+        } else isFont = "12.2px" + " " + "Kavo";
+      } else if (this.font == "Slimlines") {
+        if (this.isHeight == "9.5 Inch +$10") {
+          isFont = "8.9px" + " " + "Slimlines";
+        } else if (this.isHeight == "10.5 Inch +$20") {
+          isFont = "9.8px" + " " + "Slimlines";
+        } else isFont = "7.99px" + " " + "Slimlines";
+      } else if (this.font == "Copasetic") {
+        if (this.isHeight == "9.5 Inch +$10") {
+          isFont = "12.7px" + " " + "Copasetic";
+        } else if (this.isHeight == "10.5 Inch +$20") {
+          isFont = "14px" + " " + "Copasetic";
+        } else isFont = "11.3px" + " " + "Copasetic";
+      } else if (this.font == "Aerolite") {
+        if (this.isHeight == "9.5 Inch +$10") {
+          isFont = "14.8px" + " " + "Aerolite";
+        } else if (this.isHeight == "10.5 Inch +$20") {
+          isFont = "16px" + " " + "Aerolite";
+        } else isFont = "13.2px" + " " + "Aerolite";
+      } else if (this.font == "Dancing") {
+        if (this.isHeight == "9.5 Inch +$10") {
+          isFont = "11.4px" + " " + "Dancing";
+        } else if (this.isHeight == "10.5 Inch +$20") {
+          isFont = "12.8px" + " " + "Dancing";
+        } else isFont = "10.2px" + " " + "Dancing";
+      }
+
+      var canvas = document.createElement("canvas");
+      var context = canvas.getContext("2d");
+      context.font = isFont;
+      var metrics = context.measureText(this.overlay);
+      return metrics.width;
+    },
+
+    Compensate: function () {
+      var finalWidth;
+      if (
+        (this.font == "Edward" && this.overlay.includes("y")) ||
+        (this.font == "Edward" && this.overlay.includes("g")) ||
+        (this.font == "Edward" && this.overlay.includes("z")) ||
+        (this.font == "Edward" && this.overlay.includes("p")) ||
+        (this.font == "Edward" && this.overlay.includes("q")) ||
+        (this.font == "Edward" && this.overlay.includes("f")) ||
+        (this.font == "Edward" && this.overlay.includes("j"))
+      ) {
+        this.getTextWidth * 0.72;
+        finalWidth = this.getTextWidth;
+        return finalWidth.toFixed(2) + " Inch";
+      } else if (
+        (this.font == "Script" && this.overlay.includes("y")) ||
+        (this.font == "Script" && this.overlay.includes("g")) ||
+        (this.font == "Script" && this.overlay.includes("z")) ||
+        (this.font == "Script" && this.overlay.includes("p")) ||
+        (this.font == "Script" && this.overlay.includes("q")) ||
+        (this.font == "Script" && this.overlay.includes("f")) ||
+        (this.font == "Script" && this.overlay.includes("j"))
+      ) {
+        this.getTextWidth * 0.78;
+        finalWidth = this.getTextWidth;
+        return finalWidth.toFixed(2) + " Inch";
+      } else if (
+        (this.font == "Birds" && this.overlay.includes("y")) ||
+        (this.font == "Birds" && this.overlay.includes("g")) ||
+        (this.font == "Birds" && this.overlay.includes("z")) ||
+        (this.font == "Birds" && this.overlay.includes("p")) ||
+        (this.font == "Birds" && this.overlay.includes("q")) ||
+        (this.font == "Birds" && this.overlay.includes("f")) ||
+        (this.font == "Birds" && this.overlay.includes("j"))
+      ) {
+        this.getTextWidth * 0.75;
+        finalWidth = this.getTextWidth;
+        return finalWidth.toFixed(2) + " Inch";
+      } else if (
+        (this.font == "Aerolite" && this.overlay.includes("y")) ||
+        (this.font == "Aerolite" && this.overlay.includes("g")) ||
+        (this.font == "Aerolite" && this.overlay.includes("z")) ||
+        (this.font == "Aerolite" && this.overlay.includes("p")) ||
+        (this.font == "Aerolite" && this.overlay.includes("q")) ||
+        (this.font == "Aerolite" && this.overlay.includes("f")) ||
+        (this.font == "Aerolite" && this.overlay.includes("j"))
+      ) {
+        this.getTextWidth * 0.78;
+        finalWidth = this.getTextWidth;
+        return finalWidth.toFixed(2) + " Inch";
+      } else if (this.font == "Custom") {
+        return "Unknown";
+      }
+
+      finalWidth = this.getTextWidth;
+
+      return finalWidth.toFixed(2) + " Inch";
+      // eslint-disable-next-line vue/return-in-computed-property
+    },
   },
   methods: {
     validate() {
@@ -553,7 +711,7 @@ export default {
     validater() {
       if (
         this.letters == "" ||
-        this.isColor == "" ||
+        this.items.isColor.color == "" ||
         this.isHeight == "" ||
         this.isInstall == "" ||
         (this.isInstall == "Yes" && this.isLocation === "")
@@ -574,13 +732,17 @@ export default {
   text-align: left;
   color: #2c3e50;
 }
+.warrenty {
+  top: 60%;
+  left: 3%;
+}
 .main2 {
-  font-size: 6vw;
+  font-size: 8.5vw;
   position: relative;
   top: 150%;
   left: 0%;
   border: 1px solid green;
-  border-radius: 5px;
+  border-radius: 4px;
 }
 .vue-typer {
   /* Styles for the vue-typer container
@@ -590,8 +752,8 @@ export default {
   text-transform: capitalize;
 
   font-size: 3.2vw;
-  top: 8%;
-  right: 22%;
+  top: 9%;
+  right: 21%;
   color: #000000;
 }
 
@@ -603,7 +765,7 @@ export default {
   text-transform: capitalize;
   font-size: 2vw;
   top: 22%;
-  right: 21%;
+  right: 17%;
   font-weight: bold;
 }
 .Banner1 {
@@ -633,11 +795,11 @@ export default {
 
 @font-face {
   src: url(../../fonts/Edwardian-Script.ttf) format("truetype");
-  font-family: "edwardian_alternatebold";
+  font-family: "Edward";
 }
 @font-face {
-  src: url(../../fonts/alsscrp.ttf) format("truetype");
-  font-family: "ALS";
+  src: url(../../fonts/birds.ttf) format("truetype");
+  font-family: "Birds";
 }
 @font-face {
   src: url(../../fonts/Script.ttf) format("truetype");
@@ -666,13 +828,12 @@ export default {
 
 .radio-1 >>> label {
   font-size: 4vw;
-  font-family: "edwardian_alternatebold", Arial, sans-serif;
+  font-family: "Edward", Arial, sans-serif;
   font-weight: bolder;
 }
 .radio-2 >>> label {
   font-size: 3vw;
-  font-family: "ALS", Arial, sans-serif;
-  font-weight: bolder;
+  font-family: "Birds", Arial, sans-serif;
 }
 .radio-3 >>> label {
   font-size: 4vw;
@@ -711,7 +872,7 @@ export default {
 /* Fonts for reactive sign  */
 
 .Edward {
-  font-family: "edwardian_alternatebold";
+  font-family: "Edward";
 
   font-weight: bolder;
   text-align: center;
@@ -722,9 +883,9 @@ export default {
   font-weight: bolder;
   text-align: center;
 }
-.ALS {
-  font-family: "ALS";
-  font-weight: bolder;
+.Birds {
+  font-family: "Birds";
+  font-weight: bold;
   text-align: center;
 }
 .Kavo {
@@ -760,7 +921,25 @@ export default {
 
 .input {
   position: relative;
+
   border: 2px solid green;
-  font-weight: bold;
+  font-weight: Bolder;
 }
+/* .bb {
+  background: url(https://github.com/zubairzia0/saugadesign-dev/blob/master/img/whitegloss.jpg?raw=true);
+  background-size: cover;
+
+  color: #fff;
+  -webkit-text-fill-color: transparent;
+
+  -webkit-background-clip: text;
+
+  -moz-background-clip: text;
+
+  background-clip: text;
+}
+.brick {
+  background: url(https://github.com/zubairzia0/saugadesign-dev/blob/master/img/yellobrick.jpeg?raw=true);
+  
+} */
 </style>
