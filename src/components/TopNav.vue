@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-alert color="#2A3B4D" dark dense>
-      We Ship Canada Wide! (Installation kit included with shipping)
+      We Ship North America Wide! (DIY Ready)
     </v-alert>
 
     <v-app-bar>
@@ -56,9 +56,10 @@ module.exports = {
 </script>
 <style>
 .menu {
-  top: 18%;
-  left: 35%;
+  top: 19%;
+  left: 32.5%;
   width: 150px;
+  
  
 }
 .title{

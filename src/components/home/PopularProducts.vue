@@ -1,7 +1,14 @@
 <template>
   <v-container>
+    <fab
+      :position="position"
+      :bg-color="bgColor"
+      :actions="fabActions"
+      @message="whatsappfunc"
+      @call="call"
+    ></fab>
     <v-card class="container">
-      <v-img src="@/assets/house.jpg" aspect-ratio="3">
+      <!-- <v-img src="@/assets/welcome.png" aspect-ratio="3">
         <h1 class="vue-typer">Welcome to Sauga Design!</h1>
 
         <vue-typer
@@ -40,7 +47,7 @@
             src="../../assets/30-years-warranty.png"
           />
         </v-row>
-      </v-img>
+      </v-img> -->
       <v-form ref="form" v-model="valid" lazy-validation>
         <div>
           <v-row>
@@ -50,7 +57,7 @@
                 <div>
                   <div class="container">
                     <v-text-field
-                      label="Enter your Address Sign!"
+                      label="Enter your Address here!"
                       class="input"
                       v-model.trim="overlay"
                       hide-details="auto"
@@ -59,6 +66,7 @@
                       required
                     ></v-text-field>
                   </div>
+                  <br />
 
                   <div class="brick">
                     <div class="main2">
@@ -142,12 +150,14 @@
                         v-model="isHeight"
                         :items="items.height"
                         :item-value="items.height"
-                        label="Letter Height (Capital Letter height)"
+                        label="Sign Height"
                         dense
                         :rules="Rules"
                         required
                       ></v-select>
+                     
                     </v-row>
+                     
                     <v-row>
                       <v-select
                         v-model="isInstall"
@@ -175,11 +185,12 @@
                         of height
                       </div>
                       <div class="red">
-                        We offer installation service only within the GTHA and
-                        Wellington county (Kitchener, Waterloo, Cambridge,
-                        Guelph). If you have any questions click on the chat
-                        bubble on the bottom right and leave a message. You can
-                        also email us at saugadesign@gmail.com.
+                        We only offer installation service in Canada, Ontario
+                        and within the GTA/GTHA and Wellington county
+                        (Kitchener, Waterloo, Cambridge, Guelph) area. We ship
+                        signs North America wide so we encourage and enable you
+                        to self-install. If you have any questions please call
+                        or message us we are always happy to help.
                       </div>
                       <v-img
                         aspect-ratio="2"
@@ -235,7 +246,7 @@
                     data-item-custom4-required="true"
                     :data-item-custom4-value="font"
                     data-item-custom9-name="Letter Height"
-                    data-item-custom9-options="8.5 Inch|9.5 Inch +$10[+10]|10.5 Inch +$20[+20]|Custom"
+                    data-item-custom9-options="8.5 Inch|9.5 Inch +$10[+10]|10.5 Inch +$20[+20]|12 Inch +$30[+30]|Custom"
                     data-item-custom9-required="true"
                     :data-item-custom9-value="isHeight"
                     data-item-custom6-name="Installation"
@@ -255,7 +266,6 @@
                   >
 
                   <div>
-                    <p>*Installation kit included</p>
                     <p>
                       Note: It will take 2-4 business days to prepare your sign
                       for delivery/pickup, for installations we message you to
@@ -268,7 +278,36 @@
           </v-row>
         </div>
 
-        <v-divider></v-divider>
+        <v-card class="mx-auto" max-width="600">
+          <h2>Do-it-yourself (DIY) package includes:</h2>
+          <br />
+
+          <v-img
+            class="mx-auto"
+            src="https://github.com/zubairzia0/saugasigns/blob/master/assets/included.png?raw=true"
+          ></v-img>
+          <br />
+
+          <ol>
+            <strong>1.</strong>
+            A custom Laser cut cast acrylic sign according to your specification
+          </ol>
+          <ol>
+            <strong>2.</strong>
+            A traced template of the sign for installation
+          </ol>
+          <ol>
+            <strong>3.</strong>
+            Galvanized nails
+          </ol>
+          <h3>
+            <a href="https://saugadesign.com/#/installation"
+              >Click here for Installation instructions</a
+            >
+          </h3>
+        </v-card>
+        <br />
+
         <v-card class="mx-auto" max-width="600">
           <h2>Client Photos</h2>
           <Lingallery
@@ -279,38 +318,51 @@
               {
                 id: 'someid1',
                 src:
-                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide1.JPG?raw=true',
+                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide20.JPG?raw=true',
                 thumbnail:
-                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide1.JPG?raw=true',
+                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide20.JPG?raw=true',
               },
               {
                 id: 'someid2',
                 src:
-                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide2.JPG?raw=true',
+                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide21.JPG?raw=true',
                 thumbnail:
-                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide2.JPG?raw=true',
+                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide21.JPG?raw=true',
               },
               {
                 id: 'someid3',
                 src:
-                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide17.JPG?raw=true',
+                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide19.JPG?raw=true',
                 thumbnail:
-                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide17.JPG?raw=true',
+                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide19.JPG?raw=true',
               },
-
+              {
+                id: 'someid1',
+                src:
+                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide22.JPG?raw=true',
+                thumbnail:
+                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide22.JPG?raw=true',
+              },
+              {
+                id: 'someid1',
+                src:
+                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide23.JPG?raw=true',
+                thumbnail:
+                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide23.JPG?raw=true',
+              },
               {
                 id: 'someid4',
                 src:
-                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide18.JPG?raw=true',
+                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide1.JPG?raw=true',
                 thumbnail:
-                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide18.JPG?raw=true',
+                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide1.JPG?raw=true',
               },
               {
                 id: 'someid5',
                 src:
-                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide5.JPG?raw=true',
+                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide2.JPG?raw=true',
                 thumbnail:
-                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide5.JPG?raw=true',
+                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide2.JPG?raw=true',
               },
               {
                 id: 'someid6',
@@ -404,26 +456,64 @@
                 thumbnail:
                   'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide4.JPG?raw=true',
               },
+              {
+                id: 'someid19',
+                src:
+                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide18.JPG?raw=true',
+                thumbnail:
+                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide18.JPG?raw=true',
+              },
+              {
+                id: 'someid20',
+                src:
+                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide17.JPG?raw=true',
+                thumbnail:
+                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide17.JPG?raw=true',
+              },
+              {
+                id: 'someid21',
+                src:
+                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide5.JPG?raw=true',
+                thumbnail:
+                  'https://github.com/zubairzia0/saugasigns/blob/master/assets/Slide5.JPG?raw=true',
+              },
             ]"
           />
         </v-card>
       </v-form>
+      <br /><br />
+      <h2>Client Reviews</h2>
+      <div
+        data-romw-token="e47y6hel5LDx6B5bXByW5vlW3qHmByXZVqAlEzzFxdE9dQaBtF"
+      ></div>
     </v-card>
   </v-container>
 </template>
 
 <script>
-import { VueTyper } from "vue-typer";
 import Lingallery from "lingallery";
+import fab from "vue-fab";
 
 // import textMetrics from "text-metrics";
 
 export default {
   name: "App2",
 
-  components: { VueTyper, Lingallery },
+  components: { Lingallery, fab },
 
   data: () => ({
+    bgColor: "#778899",
+    position: "bottom-right",
+    fabActions: [
+      {
+        name: "call",
+        icon: "call",
+      },
+      {
+        name: "message",
+        icon: "message",
+      },
+    ],
     items: {
       colours: [
         { color: "Black Glossy", id: 1 },
@@ -441,7 +531,16 @@ export default {
       matte: false,
       // surface: ["Brick", "Stucco", "Stone", "Other"],
 
-      height: ["8.5 Inch", "9.5 Inch +$10", "10.5 Inch +$20"],
+      height: [
+        "5 Inch",
+        "6 Inch",
+        "7 Inch",
+        "8 Inch",
+        "8.5 Inch",
+        "9.5 Inch +$10",
+        "10.5 Inch +$20",
+        "12 Inch +$30",
+      ],
       install: ["Yes", "No"],
       location: [
         "Halton +$90",
@@ -478,16 +577,18 @@ export default {
   }),
 
   computed: {
-    LetterHeight: function () {
+    LetterHeight: function() {
       if (this.isHeight == "9.5 Inch +$10") {
         return 10;
       } else if (this.isHeight == "10.5 Inch +$20") {
         return 20;
+      } else if (this.isHeight == "12 Inch +$30") {
+        return 30;
       }
       return 0;
     },
 
-    LocationPrice: function () {
+    LocationPrice: function() {
       if (this.items.isColor.color == "Black Matte +$10") {
         if (
           (this.isInstall == "Yes" && this.isLocation == "Halton +$90") ||
@@ -535,15 +636,15 @@ export default {
       }
     },
 
-    letters: function () {
+    letters: function() {
       return this.overlay.length;
     },
 
-    colorIs: function () {
+    colorIs: function() {
       return this.isColor.color;
     },
 
-    calculateCost: function () {
+    calculateCost: function() {
       var overlayText = this.overlay;
       var rmSpace = overlayText.split(" ").join("");
 
@@ -554,13 +655,13 @@ export default {
         rmSpace.length * 7.65;
       return "$" + costDec.toFixed(2);
     },
-    isNumber: function () {
+    isNumber: function() {
       var overlayText = this.overlay;
       var rmSpace = overlayText.split(" ").join("");
       return rmSpace.length;
     },
 
-    font: function () {
+    font: function() {
       if (this.radio.value == 1) {
         return "Edward";
       } else if (this.radio.value == 7) {
@@ -583,57 +684,137 @@ export default {
         return "";
       }
     },
-    getTextWidth: function () {
+    getTextWidth: function() {
       // if given, use cached canvas for better performance
       // else, create new canvas
       var isFont = "";
       if (this.font == "Edward") {
         if (this.isHeight == "9.5 Inch +$10") {
-          isFont = "15px" + " " + "Edward";
+          isFont = "13.5px" + " " + "Edward";
         } else if (this.isHeight == "10.5 Inch +$20") {
+          isFont = "14.5px" + " " + "Edward";
+        } else if (this.isHeight == "12 Inch +$30") {
           isFont = "16.5px" + " " + "Edward";
-        } else isFont = "13.5px" + " " + "Edward";
+        } else if (this.isHeight == "8 Inch") {
+          isFont = "11px" + " " + "Edward";
+        } else if (this.isHeight == "7 Inch") {
+          isFont = "9px" + " " + "Edward";
+        } else if (this.isHeight == "6 Inch") {
+          isFont = "8px" + " " + "Edward";
+        } else if (this.isHeight == "5 Inch") {
+          isFont = "7px" + " " + "Edward";
+        } else isFont = "12px" + " " + "Edward";
       } else if (this.font == "Script") {
         if (this.isHeight == "9.5 Inch +$10") {
-          isFont = "13.42px" + " " + "Script";
+          isFont = "13.5px" + " " + "Script";
         } else if (this.isHeight == "10.5 Inch +$20") {
-          isFont = "14.83px" + " " + "Script";
+          isFont = "14.5px" + " " + "Script";
+        } else if (this.isHeight == "12 Inch +$30") {
+          isFont = "16.5px" + " " + "Script";
+        } else if (this.isHeight == "8 Inch") {
+          isFont = "11px" + " " + "Script";
+        } else if (this.isHeight == "7 Inch") {
+          isFont = "9px" + " " + "Script";
+        } else if (this.isHeight == "6 Inch") {
+          isFont = "8px" + " " + "Script";
+        } else if (this.isHeight == "5 Inch") {
+          isFont = "7px" + " " + "Script";
         } else isFont = "12px" + " " + "Script";
       } else if (this.font == "Birds") {
         if (this.isHeight == "9.5 Inch +$10") {
-          isFont = "12.4px" + " " + "Birds";
+          isFont = "13.5px" + " " + "Birds";
         } else if (this.isHeight == "10.5 Inch +$20") {
-          isFont = "13.9px" + " " + "Birds";
-        } else isFont = "11.4px" + " " + "Birds";
+          isFont = "14.5px" + " " + "Birds";
+        } else if (this.isHeight == "12 Inch +$30") {
+          isFont = "16.5px" + " " + "Birds";
+        } else if (this.isHeight == "8 Inch") {
+          isFont = "11px" + " " + "Birds";
+        } else if (this.isHeight == "7 Inch") {
+          isFont = "9px" + " " + "Birds";
+        } else if (this.isHeight == "6 Inch") {
+          isFont = "8px" + " " + "Birds";
+        } else if (this.isHeight == "5 Inch") {
+          isFont = "7px" + " " + "Birds";
+        } else isFont = "12px" + " " + "Birds";
       } else if (this.font == "Kavo") {
         if (this.isHeight == "9.5 Inch +$10") {
-          isFont = "13.6px" + " " + "Kavo";
+          isFont = "13.5px" + " " + "Kavo";
         } else if (this.isHeight == "10.5 Inch +$20") {
-          isFont = "15.1px" + " " + "Kavo";
+          isFont = "15px" + " " + "Kavo";
+        } else if (this.isHeight == "12 Inch +$30") {
+          isFont = "17.1px" + " " + "Kavo";
+        } else if (this.isHeight == "8 Inch") {
+          isFont = "11.4px" + " " + "Kavo";
+        } else if (this.isHeight == "7 Inch") {
+          isFont = "10px" + " " + "Kavo";
+        } else if (this.isHeight == "6 Inch") {
+          isFont = "8.5px" + " " + "Kavo";
+        } else if (this.isHeight == "5 Inch") {
+          isFont = "7px" + " " + "Kavo";
         } else isFont = "12.2px" + " " + "Kavo";
       } else if (this.font == "Slimlines") {
         if (this.isHeight == "9.5 Inch +$10") {
-          isFont = "8.9px" + " " + "Slimlines";
+          isFont = "9px" + " " + "Slimlines";
         } else if (this.isHeight == "10.5 Inch +$20") {
-          isFont = "9.8px" + " " + "Slimlines";
-        } else isFont = "7.99px" + " " + "Slimlines";
+          isFont = "10px" + " " + "Slimlines";
+        } else if (this.isHeight == "12 Inch +$30") {
+          isFont = "11.5px" + " " + "Slimlines";
+        } else if (this.isHeight == "8 Inch") {
+          isFont = "7.5px" + " " + "Slimlines";
+        } else if (this.isHeight == "7 Inch") {
+          isFont = "6.5px" + " " + "Slimlines";
+        } else if (this.isHeight == "6 Inch") {
+          isFont = "5.5px" + " " + "Slimlines";
+        } else if (this.isHeight == "5 Inch") {
+          isFont = "4.5px" + " " + "Slimlines";
+        } else isFont = "8px" + " " + "Slimlines";
       } else if (this.font == "Copasetic") {
         if (this.isHeight == "9.5 Inch +$10") {
-          isFont = "12.7px" + " " + "Copasetic";
+          isFont = "12.3px" + " " + "Copasetic";
         } else if (this.isHeight == "10.5 Inch +$20") {
-          isFont = "14px" + " " + "Copasetic";
-        } else isFont = "11.3px" + " " + "Copasetic";
+          isFont = "13.5px" + " " + "Copasetic";
+        } else if (this.isHeight == "12 Inch +$30") {
+          isFont = "15.5px" + " " + "Copasetic";
+        } else if (this.isHeight == "8 Inch") {
+          isFont = "10.5px" + " " + "Copasetic";
+        } else if (this.isHeight == "7 Inch") {
+          isFont = "9.8px" + " " + "Copasetic";
+        } else if (this.isHeight == "6 Inch") {
+          isFont = "8px" + " " + "Copasetic";
+        } else if (this.isHeight == "5 Inch") {
+          isFont = "6.6px" + " " + "Copasetic";
+        } else isFont = "11.5px" + " " + "Copasetic";
       } else if (this.font == "Aerolite") {
         if (this.isHeight == "9.5 Inch +$10") {
-          isFont = "14.8px" + " " + "Aerolite";
+          isFont = "14.2px" + " " + "Aerolite";
         } else if (this.isHeight == "10.5 Inch +$20") {
           isFont = "16px" + " " + "Aerolite";
+        } else if (this.isHeight == "12 Inch +$30") {
+          isFont = "17px" + " " + "Aerolite";
+        } else if (this.isHeight == "8 Inch") {
+          isFont = "11.8px" + " " + "Aerolite";
+        } else if (this.isHeight == "7 Inch") {
+          isFont = "10px" + " " + "Aerolite";
+        } else if (this.isHeight == "6 Inch") {
+          isFont = "8.5px" + " " + "Aerolite";
+        } else if (this.isHeight == "5 Inch") {
+          isFont = "7.6px" + " " + "Aerolite";
         } else isFont = "13.2px" + " " + "Aerolite";
       } else if (this.font == "Dancing") {
         if (this.isHeight == "9.5 Inch +$10") {
           isFont = "11.4px" + " " + "Dancing";
         } else if (this.isHeight == "10.5 Inch +$20") {
           isFont = "12.8px" + " " + "Dancing";
+        } else if (this.isHeight == "12 Inch +$30") {
+          isFont = "14.8px" + " " + "Dancing";
+        } else if (this.isHeight == "8 Inch") {
+          isFont = "9.6px" + " " + "Dancing";
+        } else if (this.isHeight == "7 Inch") {
+          isFont = "8.4px" + " " + "Dancing";
+        } else if (this.isHeight == "6 Inch") {
+          isFont = "7.2px" + " " + "Dancing";
+        } else if (this.isHeight == "5 Inch") {
+          isFont = "6px" + " " + "Dancing";
         } else isFont = "10.2px" + " " + "Dancing";
       }
 
@@ -644,61 +825,41 @@ export default {
       return metrics.width;
     },
 
-    Compensate: function () {
+    Compensate: function() {
       var finalWidth;
+
       if (
-        (this.font == "Edward" && this.overlay.includes("y")) ||
-        (this.font == "Edward" && this.overlay.includes("g")) ||
-        (this.font == "Edward" && this.overlay.includes("z")) ||
-        (this.font == "Edward" && this.overlay.includes("p")) ||
-        (this.font == "Edward" && this.overlay.includes("q")) ||
-        (this.font == "Edward" && this.overlay.includes("f")) ||
-        (this.font == "Edward" && this.overlay.includes("j"))
+        this.overlay.includes("y") ||
+        this.overlay.includes("g") ||
+        this.overlay.includes("z") ||
+        this.overlay.includes("p") ||
+        this.overlay.includes("q") ||
+        this.overlay.includes("f") ||
+        this.overlay.includes("j")
       ) {
-        this.getTextWidth * 0.72;
-        finalWidth = this.getTextWidth;
-        return finalWidth.toFixed(2) + " Inch";
-      } else if (
-        (this.font == "Script" && this.overlay.includes("y")) ||
-        (this.font == "Script" && this.overlay.includes("g")) ||
-        (this.font == "Script" && this.overlay.includes("z")) ||
-        (this.font == "Script" && this.overlay.includes("p")) ||
-        (this.font == "Script" && this.overlay.includes("q")) ||
-        (this.font == "Script" && this.overlay.includes("f")) ||
-        (this.font == "Script" && this.overlay.includes("j"))
-      ) {
-        this.getTextWidth * 0.78;
-        finalWidth = this.getTextWidth;
-        return finalWidth.toFixed(2) + " Inch";
-      } else if (
-        (this.font == "Birds" && this.overlay.includes("y")) ||
-        (this.font == "Birds" && this.overlay.includes("g")) ||
-        (this.font == "Birds" && this.overlay.includes("z")) ||
-        (this.font == "Birds" && this.overlay.includes("p")) ||
-        (this.font == "Birds" && this.overlay.includes("q")) ||
-        (this.font == "Birds" && this.overlay.includes("f")) ||
-        (this.font == "Birds" && this.overlay.includes("j"))
-      ) {
-        this.getTextWidth * 0.75;
-        finalWidth = this.getTextWidth;
-        return finalWidth.toFixed(2) + " Inch";
-      } else if (
-        (this.font == "Aerolite" && this.overlay.includes("y")) ||
-        (this.font == "Aerolite" && this.overlay.includes("g")) ||
-        (this.font == "Aerolite" && this.overlay.includes("z")) ||
-        (this.font == "Aerolite" && this.overlay.includes("p")) ||
-        (this.font == "Aerolite" && this.overlay.includes("q")) ||
-        (this.font == "Aerolite" && this.overlay.includes("f")) ||
-        (this.font == "Aerolite" && this.overlay.includes("j"))
-      ) {
-        this.getTextWidth * 0.78;
-        finalWidth = this.getTextWidth;
+        if (this.font == "Edward") {
+          finalWidth = this.getTextWidth * 0.72;
+          return finalWidth.toFixed(2) + " Inch";
+        } else if (this.font == "Script") {
+          finalWidth = this.getTextWidth * 0.78;
+
+          return finalWidth.toFixed(2) + " Inch";
+        } else if (this.font == "Birds") {
+          finalWidth = this.getTextWidth * 0.75;
+
+          return finalWidth.toFixed(2) + " Inch";
+        } else if (this.font == "Aerolite") {
+          finalWidth = this.getTextWidth * 0.78;
+
+          return finalWidth.toFixed(2) + " Inch";
+        } else if (this.font == "Custom") {
+          return "Unknown";
+        } else finalWidth = this.getTextWidth;
+
         return finalWidth.toFixed(2) + " Inch";
       } else if (this.font == "Custom") {
         return "Unknown";
-      }
-
-      finalWidth = this.getTextWidth;
+      } else finalWidth = this.getTextWidth;
 
       return finalWidth.toFixed(2) + " Inch";
       // eslint-disable-next-line vue/return-in-computed-property
@@ -720,6 +881,12 @@ export default {
       } else if (this.isInstall == "No" && this.isLocation !== "") {
         this.isLocation = "";
       } else return "snipcart-add-item";
+    },
+    call() {
+      window.open("tel:6474084915");
+    },
+    whatsappfunc: function() {
+      return (location.href = "https://wa.me/14168220044");
     },
   },
 };
@@ -806,7 +973,7 @@ export default {
   font-family: "Script";
 }
 @font-face {
-  src: url(../../fonts/Kavo.otf);
+  src: url(../../fonts/kavoserif-bold.otf);
   font-family: "Kavo";
 }
 @font-face {
@@ -919,9 +1086,16 @@ export default {
   text-align: center;
 }
 
+.input >>> label {
+  position: relative;
+  font-size: 2vh;
+
+  color: lightcoral;
+  text-align: center;
+}
 .input {
   position: relative;
-
+  height: 3pc;
   border: 2px solid green;
   font-weight: Bolder;
 }

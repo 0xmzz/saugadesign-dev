@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <div><Header />
+<banner class="banner"/>
       <PopularProducts class="body" />
       <Footer class="footer" />
     </div>
@@ -11,6 +12,8 @@
 
 const PopularProducts = require("../components/home/PopularProducts").default;
 const Footer = require("../components/home/Footer").default;
+const banner = require("../components/home/banner").default;
+
 
 
 module.exports = {
@@ -18,6 +21,7 @@ module.exports = {
    
     PopularProducts,
     Footer,
+    banner
   },
 };
 </script>

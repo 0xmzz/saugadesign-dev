@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+  <script src="https://reviewsonmywebsite.com/js/v2/embed.js?id=6019c18b62403111b66e" type="text/javascript"></script>
+  
    <link rel="preconnect" href="https://cdn.snipcart.com">
 <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.0.22/default/snipcart.css" />
     <meta charset="utf-8">
@@ -11,15 +13,35 @@
     
   <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-176794596-1"></script>
+
+  
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'UA-176794596-1');
+  gtag('config', 'AW-561263416');
 </script>
 
- 
+ <!-- Event snippet for Add to cart conversion page
+In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-561263416/znhQCLnfvuIBELjm0IsC',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
   </head>
   <body>
   
@@ -55,7 +77,7 @@
                       data-item-custom4-required="true"
                       :data-item-custom4-value="font"
                       data-item-custom9-name="Letter Height"
-                      data-item-custom9-options="8.5 Inch|9.5 Inch +$10[+10]|10.5 Inch +$20[+20]|Custom"
+                      data-item-custom9-options="8.5 Inch|9.5 Inch +$10[+10]|10.5 Inch +$20[+20]|12 Inch +$30[+30]|Custom"
                       data-item-custom9-required="true"
                       :data-item-custom9-value="isHeight"
                       data-item-custom6-name="Installation"
@@ -80,22 +102,7 @@
     <!-- built files will be auto injected -->
     
   </body>
-<!--Start of Tawk.to Script-->
 
-
-<script type="text/javascript">
-
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/5f4a9822cc6a6a5947aff979/default';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
   <div hidden id="snipcart" data-api-key="ZTY3MjczMmQtOGU2ZC00YTI3LTgxZTItMTQxYjcxMTM3N2M5NjM3MzMzODI4NTM5NjgyMzkx"></div>
 <script src="https://cdn.snipcart.com/themes/v3.0.22/default/snipcart.js"></script>
 
