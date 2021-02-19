@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  <script src="https://reviewsonmywebsite.com/js/v2/embed.js?id=6019c18b62403111b66e" type="text/javascript"></script>
+
   
    <link rel="preconnect" href="https://cdn.snipcart.com">
 <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.0.22/default/snipcart.css" />
@@ -49,53 +49,57 @@ function gtag_report_conversion(url) {
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div hidden>
-   <v-btn
-                     
-                      id="custom-sign"
-                      class="snipcart-add-item"
-                      data-item-id="custom-sign"
-                      data-item-price="0.00"
-                      data-item-url="https://saugadesign.com"
-                      data-item-description="Custom made house address sign"
-                      data-item-image="/assets/SaugaSignslogo.PNG"
-                      data-item-name="Custom Sign"
-                      data-item-custom1-name="Address Sign Text (do not change in cart)"
-                      data-item-custom1-type="textarea"
-                      data-item-custom1-required="true"
-                      :data-item-custom1-value="overlay"
-                      data-item-custom10-name="Number of digits + letters in Order (do not change this field)"
-                      :data-item-custom10-value="isNumber"
-                      data-item-custom10-options="1[+7.65]|2[+15.3]|3[+22.95]|4[+30.6]|5[+38.25]|6[+45.9]|7[+53.55]
+      
+                  
+   
+                  <v-btn
+                    
+                   id="custom-sign"
+                    class="snipcart-add-item"
+                    data-item-id="custom-sign"
+                    data-item-price="0.00"
+                    data-item-url="https://saugadesign.com"
+                    data-item-description="Custom made house address sign"
+                    data-item-image="https://github.com/zubairzia0/SaugaDesign-Site/blob/master/assets/SaugaSignslogo.PNG?raw=true"
+                    data-item-name="Custom Sign"
+                    data-item-custom1-name="Address Sign Text (do not change)"
+                    data-item-custom1-type="textarea"
+                    data-item-custom1-required="true"
+                    
+                    data-item-custom10-name="Number of digits + letters in Order (do not change)"
+                   
+                    data-item-custom10-options="1[+7.65]|2[+15.3]|3[+22.95]|4[+30.6]|5[+38.25]|6[+45.9]|7[+53.55]
                       |8[+61.2]|9[+68.85]|10[+76.5]|11[+84.15]|12[+91.8]|13[+99.45]|14[+107.1]|15[+114.75]|16[+122.4]|17[+130.05]|18[+137.7]|19[+145.35]|20[+153]|21[+160.65]
                       |22[+168.3]|23[+175.9]|24[+183.6]|25[+191.25]|26[+198.9]|27[+206.55]|28[+214.2]|29[+221.85]|30[+229.5]"
-                      data-item-custom2-name="Acrylic Colour"
-                      data-item-custom2-options="Black Glossy|Black Matte +$10[+10]|Red Glossy|White Glossy|Grey Glossy"
-                      data-item-custom2-required="true"
-                      :data-item-custom2-value="items.isColor.color"
-                      data-item-custom4-name="Font Choice"
-                      data-item-custom4-options="Edward|Script|Birds|Kavo|Slimlines|Copasetic|Aerolite|Dancing|Custom"
-                      data-item-custom4-required="true"
-                      :data-item-custom4-value="font"
-                      data-item-custom9-name="Letter Height"
-                      data-item-custom9-options="8.5 Inch|9.5 Inch +$10[+10]|10.5 Inch +$20[+20]|12 Inch +$30[+30]|Custom"
-                      data-item-custom9-required="true"
-                      :data-item-custom9-value="isHeight"
-                      data-item-custom6-name="Installation"
-                      data-item-custom6-options="No|Yes"
-                      data-item-custom6-required="true"
-                      :data-item-custom6-value="isInstall"
-                      data-item-custom7-name="Installation Quote by Region"
-                       data-item-custom7-options="N/A|Halton +$90[+90]|Peel +$90[+90]|City of Toronto +$110[+110]|York +$110[+110]|Durham +$130[+130]|Hamilton +$110[+110]|Kitchener/Waterloo/Guelph/Cambridge/Other +$130[+130]"
-                      :data-item-custom7-value="isLocation"
-                      data-item-custom8-name="Phone Number"
-                      data-item-custom8-required="true"
-                      data-item-custom13-name="Any Special Instructions/Requests?"
-                      data-item-custom13-type="textarea"
-                      :data-item-custom13-value="isInstructions"
-                      >*Add to cart</v-btn
-                    >
-    
+                    data-item-custom2-name="Acrylic Colour"
+                    data-item-custom2-options="Black Glossy|Black Matte +$10[+10]|White Glossy|Grey Glossy"
+                    data-item-custom2-required="true"
+                    
+                    data-item-custom4-name="Font Choice"
+                    data-item-custom4-options="Edward|Script|Birds|Kavo|Slimlines|Copasetic|Aerolite|Dancing|Custom"
+                    data-item-custom4-required="true"
+                   
+                    data-item-custom9-name="Height"
+                    data-item-custom9-options="5 Inch|6 Inch|7 Inch|8 Inch|8.5 Inch|9.5 Inch +$10[+10]|10.5 Inch +$20[+20]|12 Inch +$30[+30]|Custom"
+                    data-item-custom9-required="true"
+                    
 
+                   data-item-custom14-name="Acrylic Thickness"
+                    data-item-custom14-options="3mm|6mm +$40 [+40]"
+                    data-item-custom14-required="true"
+                    
+                     data-item-custom7-name="Installation Locaton"
+                    data-item-custom7-options="N/A|Halton +$100[+100]|Hamilton +$120[+120]|Peel +$100[+100]|City of Toronto +$120[+120]|York +$120[+120]|Durham +$140[+140]|Kitchener/Waterloo/Guelph/Cambridge/Other +$140[+140]"
+
+                    data-item-custom7-required="true"
+                  
+                    
+                    data-item-custom8-name="Phone Number"
+                    data-item-custom8-required="true"
+                    data-item-custom13-name="Any Special Instructions/Requests?"
+                    da
+ >*Add to cart
+                  </v-btn>
         </div>
 
     <div id="app"></div>
@@ -103,7 +107,7 @@ function gtag_report_conversion(url) {
     
   </body>
 
-  <div hidden id="snipcart" data-api-key="ZTY3MjczMmQtOGU2ZC00YTI3LTgxZTItMTQxYjcxMTM3N2M5NjM3MzMzODI4NTM5NjgyMzkx"></div>
+   <div hidden id="snipcart" data-api-key="ZTY3MjczMmQtOGU2ZC00YTI3LTgxZTItMTQxYjcxMTM3N2M5NjM3MzMzODI4NTM5NjgyMzkx"></div>
 <script src="https://cdn.snipcart.com/themes/v3.0.22/default/snipcart.js"></script>
 
 </script>

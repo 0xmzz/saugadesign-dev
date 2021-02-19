@@ -39,4 +39,7 @@ export default {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+.v-navigation-drawer {
+z-index: 999999 !important;
+}
 </style>

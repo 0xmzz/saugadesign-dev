@@ -1,5 +1,6 @@
 <template>
   <v-app>
+     <!-- <PopularProductsdown class="body" /> -->
     <div><Header />
 <banner class="banner"/>
       <PopularProducts class="body" />
@@ -14,12 +15,15 @@ const PopularProducts = require("../components/home/PopularProducts").default;
 const Footer = require("../components/home/Footer").default;
 const banner = require("../components/home/banner").default;
 
+// const PopularProductsdown = require("../components/home/PopularProductsdown").default;
+
+
 
 
 module.exports = {
   components: {
-   
-    PopularProducts,
+    // PopularProductsdown,
+     PopularProducts,
     Footer,
     banner
   },

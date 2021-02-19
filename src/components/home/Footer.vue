@@ -25,9 +25,17 @@
   </v-footer>
 </template>
 <script>
+
+
+
 export default {
   data: () => ({}),
   components: {},
+  mounted() {
+      let recaptchaScript = document.createElement('script')
+      recaptchaScript.setAttribute('src', 'https://reviewsonmywebsite.com/js/v2/embed.js?id=6019c18b62403111b66e')
+      document.head.appendChild(recaptchaScript)
+    },
   methods: {
     whatsappfunc: function() {
       return (location.href = "https://wa.me/14168220044");

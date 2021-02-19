@@ -6,12 +6,13 @@
       :image="slide.image"
       :title="slide.title"
       :content="slide.content"
+      hide-overlay
     />
 
     <h1 class="vue-typer">Welcome to Sauga Design!</h1>
 
     <vue-typer
-      :text="['Upgrade your house with a beautiful sign!']"
+      :text="['Order a Custom sign below!']"
       :repeat="0"
       :shuffle="false"
       initial-action="typing"
@@ -106,7 +107,7 @@ image: require("../../assets/install.png"),
   font-weight: bolder;
   font-size: 3vw;
   top: 19%;
-  right: 11%;
+  right: 23%;
   color: black;
 }
 

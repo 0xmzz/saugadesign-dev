@@ -8,46 +8,7 @@
       @call="call"
     ></fab>
     <v-card class="container">
-      <!-- <v-img src="@/assets/welcome.png" aspect-ratio="3">
-        <h1 class="vue-typer">Welcome to Sauga Design!</h1>
 
-        <vue-typer
-          :text="['Get a quote and place an order below']"
-          :repeat="0"
-          :shuffle="false"
-          initial-action="typing"
-          :pre-type-delay="2600"
-          :type-delay="50"
-          :pre-erase-delay="166"
-          :erase-delay="60"
-          erase-style="backspace"
-          :erase-on-complete="false"
-          caret-animation="expand"
-          class="vue-typer2"
-        ></vue-typer>
-        <v-row align="end" :class="font">
-          <vue-typer
-            :text="['123 Your Street']"
-            :repeat="0"
-            :shuffle="false"
-            initial-action="typing"
-            :pre-type-delay="5200"
-            :type-delay="100"
-            :pre-erase-delay="1500"
-            :erase-delay="200"
-            erase-style="backspace"
-            :erase-on-complete="false"
-            caret-animation="expand"
-            class="Banner1"
-          ></vue-typer>
-          <v-img
-            class="warrenty"
-            max-width="65"
-            max-height="75"
-            src="../../assets/30-years-warranty.png"
-          />
-        </v-row>
-      </v-img> -->
       <v-form ref="form" v-model="valid" lazy-validation>
         <div>
           <v-row>
@@ -55,27 +16,52 @@
               <v-divider></v-divider>
               <v-card>
                 <div>
-                  <div class="container">
-                    <v-text-field
-                      label="Enter your Address here!"
-                      class="input"
-                      v-model.trim="overlay"
-                      hide-details="auto"
-                      :rules="Rules"
-                      ref="Address"
-                      required
-                    ></v-text-field>
-                  </div>
-                  <br />
-
-                  <div class="brick">
-                    <div class="main2">
+                  <v-card>
+                    <div class="container">
+                      <v-text-field
+                        label="Enter your Address here!"
+                        class="input"
+                        v-model.trim="overlay"
+                        hide-details="auto"
+                        :rules="Rules"
+                        ref="Address"
+                        required
+                      ></v-text-field>
+                      <br>
+                      <br>
+                      <div class="main2">
                       <v-card class="bb" :class="font"> {{ overlay }}</v-card>
                     </div>
-                    <v-card>
-                      <div><b>Approximate Width: </b> {{ Compensate }}</div>
-                      <div><b>Height:</b> {{ isHeight }}</div></v-card
-                    >
+
+                    </div>
+                  </v-card>
+                  
+                  
+
+                  <div>
+                    
+                    <v-card class="signheight">
+                      <div><h5>Approximate Width:  {{ Compensate }} </h5></div>
+                      <div><h5>Height: {{ isHeight }}</h5></div>
+
+                      <div v-if="(containsdecender == 1)">
+                       <h6> * Height is from lowest to
+                        highest point.</h6>
+                        <img src="../../assets/height.png" /></div
+                    ></v-card>
+                    <div>
+                  
+                    <h5 class="green1">Winter Sale 15% off</h5>
+                    
+                      <h5 class="inputprice"> {{ calculateCost }}</h5>
+                    
+                    <div class="input">
+                      {{ calculateCostdiscount }}
+                    </div>
+                      
+                    
+                    
+                  </div>
                   </div>
                 </div>
 
@@ -145,6 +131,7 @@
                       ></v-select>
                     </v-row>
 
+                    
                     <v-row>
                       <v-select
                         v-model="isHeight"
@@ -155,9 +142,27 @@
                         :rules="Rules"
                         required
                       ></v-select>
-                     
+                    </v-row>  
+
+                    <v-row>
+                      <v-select
+                        v-model="isthickness"
+                        :items="items.thickness"
+                        :item-value="items.thickness"
+                        label="Cast acrylic thickness"
+                        dense
+                        :rules="Rules"
+                        required
+                      ></v-select>
+                      
                     </v-row>
-                     
+                    <v-col>
+                    <v-img
+                    width="40vh"
+                        aspect-ratio="4"
+                        src="../../assets/6mm3mm.jpeg"
+                      ></v-img>
+                      </v-col>
                     <v-row>
                       <v-select
                         v-model="isInstall"
@@ -180,18 +185,16 @@
                         :rules="Rules"
                         required
                       ></v-select>
-                      <div class="blue">
-                        Please note that we do not install signs beyond 12 feet
-                        of height
-                      </div>
                       <div class="red">
-                        We only offer installation service in Canada, Ontario
-                        and within the GTA/GTHA and Wellington county
-                        (Kitchener, Waterloo, Cambridge, Guelph) area. We ship
-                        signs North America wide so we encourage and enable you
-                        to self-install. If you have any questions please call
-                        or message us we are always happy to help.
+                        Please note that we do not install signs higher than 12 feet or remove any old signage or lighting.
+                        
                       </div>
+                      <div class="orange">
+                        We will not be doing any installation between 18th December to 3rd January. Installations are subject to weather conditions.
+
+              
+                      </div>
+                      
                       <v-img
                         aspect-ratio="2"
                         src="https://github.com/zubairzia0/SaugaDesign-Site/blob/master/assets/GTA.png?raw=true"
@@ -199,18 +202,6 @@
                     </template>
 
                     <template v-if="isInstall === 'No'"></template>
-                    <v-row>
-                      <v-col>
-                        <v-text-field
-                          id="price"
-                          class="input"
-                          label="Quoted: CAD"
-                          v-model="calculateCost"
-                          hide-details="auto"
-                          readonly
-                        ></v-text-field>
-                      </v-col>
-                    </v-row>
 
                     <div class="container" v-if="this.valid == false">
                       <p class="red">Please fill all required fields above</p>
@@ -228,49 +219,73 @@
                     data-item-description="Custom made house address sign"
                     data-item-image="https://github.com/zubairzia0/SaugaDesign-Site/blob/master/assets/SaugaSignslogo.PNG?raw=true"
                     data-item-name="Custom Sign"
-                    data-item-custom1-name="Address Sign Text (do not change in cart)"
+                    data-item-custom1-name="Address Sign Text (do not change)"
                     data-item-custom1-type="textarea"
                     data-item-custom1-required="true"
                     :data-item-custom1-value="overlay"
-                    data-item-custom10-name="Number of digits + letters in Order (do not change this field)"
+                    data-item-custom10-name="Number of digits + letters in Order (do not change)"
                     :data-item-custom10-value="isNumber"
                     data-item-custom10-options="1[+7.65]|2[+15.3]|3[+22.95]|4[+30.6]|5[+38.25]|6[+45.9]|7[+53.55]
                       |8[+61.2]|9[+68.85]|10[+76.5]|11[+84.15]|12[+91.8]|13[+99.45]|14[+107.1]|15[+114.75]|16[+122.4]|17[+130.05]|18[+137.7]|19[+145.35]|20[+153]|21[+160.65]
                       |22[+168.3]|23[+175.9]|24[+183.6]|25[+191.25]|26[+198.9]|27[+206.55]|28[+214.2]|29[+221.85]|30[+229.5]"
                     data-item-custom2-name="Acrylic Colour"
-                    data-item-custom2-options="Black Glossy|Black Matte +$10[+10]|Red Glossy|White Glossy|Grey Glossy"
+                    data-item-custom2-options="Black Glossy|Black Matte +$10[+10]|White Glossy|Grey Glossy"
                     data-item-custom2-required="true"
                     :data-item-custom2-value="items.isColor.color"
                     data-item-custom4-name="Font Choice"
                     data-item-custom4-options="Edward|Script|Birds|Kavo|Slimlines|Copasetic|Aerolite|Dancing|Custom"
                     data-item-custom4-required="true"
                     :data-item-custom4-value="font"
-                    data-item-custom9-name="Letter Height"
-                    data-item-custom9-options="8.5 Inch|9.5 Inch +$10[+10]|10.5 Inch +$20[+20]|12 Inch +$30[+30]|Custom"
+                    data-item-custom9-name="Height"
+                    data-item-custom9-options="5 Inch|6 Inch|7 Inch|8 Inch|8.5 Inch|9.5 Inch +$10[+10]|10.5 Inch +$20[+20]|12 Inch +$30[+30]|Custom"
                     data-item-custom9-required="true"
                     :data-item-custom9-value="isHeight"
-                    data-item-custom6-name="Installation"
-                    data-item-custom6-options="No|Yes"
-                    data-item-custom6-required="true"
-                    :data-item-custom6-value="isInstall"
-                    data-item-custom7-name="Installation Quote by Region"
-                    data-item-custom7-options="N/A|Halton +$90[+90]|Peel +$90[+90]|City of Toronto +$110[+110]|York +$110[+110]|Durham +$130[+130]|Hamilton +$110[+110]|Kitchener/Waterloo/Guelph/Cambridge/Other +$130[+130]"
-                    :data-item-custom7-value="isLocation"
+                   data-item-custom14-name="Acrylic Thickness"
+                    data-item-custom14-options="3mm|6mm +$40 [+40]"
+                    data-item-custom14-required="true"
+                    :data-item-custom14-value="isthickness"
+
+                     data-item-custom7-name="Installation Locaton"
+                    data-item-custom7-options="N/A|Halton +$100[+100]|Hamilton +$120[+120]|Peel +$100[+100]|City of Toronto +$120[+120]|York +$120[+120]|Durham +$140[+140]|Kitchener/Waterloo/Guelph/Cambridge/Other +$140[+140]"
+
+                    data-item-custom7-required="true"
+                    :data-item-custom7-value= "isLocation"
+
                     data-item-custom8-name="Phone Number"
                     data-item-custom8-required="true"
                     data-item-custom13-name="Any Special Instructions/Requests?"
                     data-item-custom13-type="textarea"
                     :data-item-custom13-value="isInstructions"
                     data-item-has-taxes-included="true"
-                    >*Add to cart</v-btn
-                  >
+                    >*Add to cart
+                  </v-btn>
+                  
+                    <div>
+                  
+                    <h4 class="green1">Winter Sale 15% off</h4>
+                    <div class="inputprice">
+                      {{ calculateCost }}
+                      </div>
+                    <div class="input">
+                      {{ calculateCostdiscount }}
+                    </div>
+                      
+                    
+                    
+                  </div>
+
+                  <v-col> </v-col>
 
                   <div>
-                    <p>
-                      Note: It will take 2-4 business days to prepare your sign
-                      for delivery/pickup, for installations we message you to
-                      book a date/time after your order is prepared.
-                    </p>
+                    <h1>Extra Details:</h1>
+                    
+                      <li> We use Cast Acrylic material for the sign, it has an emaculate finish and is weather resistant for up to 30 years</li>
+                      
+                      <li> It can take 2 - 6 business days to prepare the sign for shipping</li>
+                      <li> Signs come with the essentials for a drill install (Epoxy not included)</li>
+                     <li> We allow deffered payments for pickup but not for delivery, you will find the deffered payment on the 3rd stage of the checkout step</li>
+                     
+                    
                   </div>
                 </div>
               </v-card>
@@ -279,7 +294,7 @@
         </div>
 
         <v-card class="mx-auto" max-width="600">
-          <h2>Do-it-yourself (DIY) package includes:</h2>
+          <h2>Do-it-yourself (DIY) essentials included:</h2>
           <br />
 
           <v-img
@@ -481,6 +496,7 @@
           />
         </v-card>
       </v-form>
+      
       <br /><br />
       <h2>Client Reviews</h2>
       <div
@@ -492,7 +508,15 @@
 
 <script>
 import Lingallery from "lingallery";
+
 import fab from "vue-fab";
+
+import Vue from "vue";
+import VTooltip from "v-tooltip";
+// import EasyInstaFeed from "easy-instagram-feed";
+
+Vue.use(VTooltip);
+// EasyInstaFeed(feedUrl);
 
 // import textMetrics from "text-metrics";
 
@@ -514,23 +538,34 @@ export default {
         icon: "message",
       },
     ],
+
     items: {
       colours: [
         { color: "Black Glossy", id: 1 },
         { color: "Black Matte +$10", id: 2 },
-        { color: "Red Glossy", id: 3 },
-        { color: "White Glossy", id: 4 },
-        { color: "Grey Glossy", id: 5 },
+        
+        { color: "White Glossy", id: 3 },
+        { color: "Grey Glossy", id: 4 },
       ],
+      
+        
+      
       images: ["../../assets/Crosscurrent.jpeg", "../../assets/faris.jpeg"],
       isColor: {
         color: "",
       },
+      
       //   selectedOptionId: 0,
 
       matte: false,
-      // surface: ["Brick", "Stucco", "Stone", "Other"],
+      surface: ["Brick", "Stucco", "Stone", "Other"],
+      thickness:  [
+      "3mm",
+      "6mm +$40",
+                  ],
 
+        
+      
       height: [
         "5 Inch",
         "6 Inch",
@@ -543,13 +578,13 @@ export default {
       ],
       install: ["Yes", "No"],
       location: [
-        "Halton +$90",
-        "Hamilton +$110",
-        "Peel +$90",
-        "City of Toronto +$110",
-        "York +$110",
-        "Durham +$130",
-        "Kitchener/Waterloo/Guelph/Cambridge/Other +$130",
+        "Halton +$100",
+        "Hamilton +$120",
+        "Peel +$100",
+        "City of Toronto +$120",
+        "York +$120",
+        "Durham +$140",
+        "Kitchener/Waterloo/Guelph/Cambridge/Other +$140",
       ],
       pickup: "",
       payNow: ["Yes", "No"],
@@ -562,7 +597,7 @@ export default {
 
     isHeight: "8.5 Inch",
     isDeliver: "",
-
+    isthickness: "",
     isInstall: "",
     isLocation: "",
 
@@ -570,6 +605,8 @@ export default {
     overlay: "",
 
     cost: 0,
+
+    decender: false,
 
     radio: {
       value: "",
@@ -588,49 +625,54 @@ export default {
       return 0;
     },
 
+    Thickness: function() {
+      if (this.isthickness == "6mm +$40") {
+        return 40;
+    } else return 0;},
+
     LocationPrice: function() {
       if (this.items.isColor.color == "Black Matte +$10") {
         if (
-          (this.isInstall == "Yes" && this.isLocation == "Halton +$90") ||
-          (this.isInstall == "Yes" && this.isLocation == "Peel +$90")
+          (this.isInstall == "Yes" && this.isLocation == "Halton +$100") ||
+          (this.isInstall == "Yes" && this.isLocation == "Peel +$100")
         ) {
-          return 100;
+          return 110;
         } else if (
           (this.isInstall == "Yes" &&
-            this.isLocation == "City of Toronto +$110") ||
-          (this.isInstall == "Yes" && this.isLocation == "York +$110") ||
-          (this.isInstall == "Yes" && this.isLocation == "Hamilton +$110")
+            this.isLocation == "City of Toronto +$120") ||
+          (this.isInstall == "Yes" && this.isLocation == "York +$120") ||
+          (this.isInstall == "Yes" && this.isLocation == "Hamilton +$120")
         ) {
-          return 120;
+          return 130;
         } else if (
-          (this.isInstall == "Yes" && this.isLocation == "Durham +$130") ||
+          (this.isInstall == "Yes" && this.isLocation == "Durham +$140") ||
           (this.isInstall == "Yes" &&
-            this.isLocation == "Kitchener/Waterloo/Guelph/Cambridge +$130")
+            this.isLocation == "Kitchener/Waterloo/Guelph/Cambridge +$140")
         ) {
-          return 140;
+          return 150;
         } else {
           return 10;
         }
       } else {
         if (
-          (this.isInstall == "Yes" && this.isLocation == "Halton +$90") ||
-          (this.isInstall == "Yes" && this.isLocation == "Peel +$90")
+          (this.isInstall == "Yes" && this.isLocation == "Halton +$100") ||
+          (this.isInstall == "Yes" && this.isLocation == "Peel +$100")
         ) {
-          return 90;
+          return 100;
         } else if (
           (this.isInstall == "Yes" &&
-            this.isLocation == "City of Toronto +$110") ||
-          (this.isInstall == "Yes" && this.isLocation == "York +$110") ||
-          (this.isInstall == "Yes" && this.isLocation == "Hamilton +$110")
+            this.isLocation == "City of Toronto +$120") ||
+          (this.isInstall == "Yes" && this.isLocation == "York +$120") ||
+          (this.isInstall == "Yes" && this.isLocation == "Hamilton +$120")
         ) {
-          return 110;
+          return 120;
         } else if (
-          (this.isInstall == "Yes" && this.isLocation == "Durham +$130") ||
+          (this.isInstall == "Yes" && this.isLocation == "Durham +$140") ||
           (this.isInstall == "Yes" &&
             this.isLocation ==
-              "Kitchener/Waterloo/Guelph/Cambridge/Other +$130")
+              "Kitchener/Waterloo/Guelph/Cambridge/Other +$140")
         ) {
-          return 130;
+          return 140;
         }
         return 0;
       }
@@ -652,8 +694,21 @@ export default {
         this.cost +
         this.LetterHeight +
         this.LocationPrice +
+        this.Thickness +
         rmSpace.length * 7.65;
       return "$" + costDec.toFixed(2);
+    },
+    calculateCostdiscount: function() {
+      var overlayText = this.overlay;
+      var rmSpace = overlayText.split(" ").join("");
+
+      var costDec =
+        this.cost +
+        this.LetterHeight +
+        this.LocationPrice +
+        this.Thickness +
+        rmSpace.length * 7.65;
+      return "$" + (costDec * 0.85).toFixed(2);
     },
     isNumber: function() {
       var overlayText = this.overlay;
@@ -864,6 +919,22 @@ export default {
       return finalWidth.toFixed(2) + " Inch";
       // eslint-disable-next-line vue/return-in-computed-property
     },
+    containsdecender: function() {
+      if (
+        this.overlay.includes("y") ||
+        this.overlay.includes("g") ||
+        this.overlay.includes("z") ||
+        this.overlay.includes("p") ||
+        this.overlay.includes("q") ||
+        this.overlay.includes("f") ||
+        this.overlay.includes("j")
+      ) {
+         
+         return "1" ;
+        
+      }
+      return "0";
+    },
   },
   methods: {
     validate() {
@@ -873,8 +944,8 @@ export default {
       if (
         this.letters == "" ||
         this.items.isColor.color == "" ||
-        this.isHeight == "" ||
-        this.isInstall == "" ||
+        this.isHeight == "" 
+        || this.isInstall == "" ||
         (this.isInstall == "Yes" && this.isLocation === "")
       ) {
         return "";
@@ -1090,30 +1161,40 @@ export default {
   position: relative;
   font-size: 2vh;
 
-  color: lightcoral;
+  color: green;
   text-align: center;
 }
 .input {
   position: relative;
-  height: 3pc;
-  border: 2px solid green;
+  height: 2pc;
+  font-size: 3vh;
+  color: green;
   font-weight: Bolder;
 }
-/* .bb {
-  background: url(https://github.com/zubairzia0/saugadesign-dev/blob/master/img/whitegloss.jpg?raw=true);
-  background-size: cover;
+.inputprice >>> label {
+  position: relative;
+  font-size: 2vh;
 
-  color: #fff;
-  -webkit-text-fill-color: transparent;
-
-  -webkit-background-clip: text;
-
-  -moz-background-clip: text;
-
-  background-clip: text;
+  color: lightcoral;
+  text-align: center;
 }
-.brick {
-  background: url(https://github.com/zubairzia0/saugadesign-dev/blob/master/img/yellobrick.jpeg?raw=true);
+.inputprice {
+  color: red;
+  text-decoration: line-through;
+}
+.inputpricebutton {
+  text-decoration: line-through;
+}
+
+.red1 {
+  color: red;
+}
+.green1 {
+  color: green;
+}
+
+.signheight {
   
-} */
+  border-block-color: green;
+}
 </style>
