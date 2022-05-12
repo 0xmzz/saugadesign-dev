@@ -51,12 +51,12 @@
                     ></v-card>
                     <div>
                   
-                    <h5 class="green1">Winter Sale 15% off</h5>
+                    <!-- <h5 class="green1">Winter Sale 15% off</h5> -->
                     
-                      <h5 class="inputprice"> {{ calculateCost }}</h5>
+                      <!-- <h5 class="inputprice"> {{ }}</h5> -->
                     
                     <div class="input">
-                      {{ calculateCostdiscount }}
+                      {{ calculateCost  }}
                     </div>
                       
                     
@@ -144,6 +144,18 @@
                       ></v-select>
                     </v-row>  
 
+                     <v-row>
+                      <v-select
+                        v-model="isLED"
+                        :items="items.LED"
+                        :item-value="items.LED"
+                        label="Add LED to sign?"
+                        dense
+                        :rules="Rules"
+                        required
+                      ></v-select>
+                    </v-row>  
+
                     <v-row>
                       <v-select
                         v-model="isthickness"
@@ -224,6 +236,7 @@
                     data-item-custom1-required="true"
                     :data-item-custom1-value="overlay"
                     data-item-custom10-name="Number of digits + letters in Order (do not change)"
+                    data-item-custom10-type="hidden"
                     :data-item-custom10-value="isNumber"
                     data-item-custom10-options="1[+7.65]|2[+15.3]|3[+22.95]|4[+30.6]|5[+38.25]|6[+45.9]|7[+53.55]
                       |8[+61.2]|9[+68.85]|10[+76.5]|11[+84.15]|12[+91.8]|13[+99.45]|14[+107.1]|15[+114.75]|16[+122.4]|17[+130.05]|18[+137.7]|19[+145.35]|20[+153]|21[+160.65]
@@ -240,6 +253,12 @@
                     data-item-custom9-options="5 Inch|6 Inch|7 Inch|8 Inch|8.5 Inch|9.5 Inch +$10[+10]|10.5 Inch +$20[+20]|12 Inch +$30[+30]|Custom"
                     data-item-custom9-required="true"
                     :data-item-custom9-value="isHeight"
+
+                    data-item-custom11-name="LED"
+                    data-item-custom11-options="Yes|No"
+                    data-item-custom11-required="true"
+                    :data-item-custom11-value="isLED"
+
                    data-item-custom14-name="Acrylic Thickness"
                     data-item-custom14-options="3mm|6mm +$40 [+40]"
                     data-item-custom14-required="true"
@@ -262,12 +281,12 @@
                   
                     <div>
                   
-                    <h4 class="green1">Winter Sale 15% off</h4>
-                    <div class="inputprice">
-                      {{ calculateCost }}
-                      </div>
+                    <!-- <h4 class="green1">Winter Sale 15% off</h4> -->
+                    <!-- <div class="inputprice">
+                      {{  }}
+                      </div> -->
                     <div class="input">
-                      {{ calculateCostdiscount }}
+                      {{ calculateCost}}
                     </div>
                       
                     
@@ -513,6 +532,7 @@ import fab from "vue-fab";
 
 import Vue from "vue";
 import VTooltip from "v-tooltip";
+import func from 'vue-editor-bridge';
 // import EasyInstaFeed from "easy-instagram-feed";
 
 Vue.use(VTooltip);
@@ -576,6 +596,7 @@ export default {
         "10.5 Inch +$20",
         "12 Inch +$30",
       ],
+      LED: ["Yes", "No"],
       install: ["Yes", "No"],
       location: [
         "Halton +$100",
@@ -597,6 +618,7 @@ export default {
 
     isHeight: "8.5 Inch",
     isDeliver: "",
+    isLED: "No",
     isthickness: "",
     isInstall: "",
     isLocation: "",
@@ -624,6 +646,7 @@ export default {
       }
       return 0;
     },
+ 
 
     Thickness: function() {
       if (this.isthickness == "6mm +$40") {
@@ -678,6 +701,7 @@ export default {
       }
     },
 
+//  This appears to be for snipcart
     letters: function() {
       return this.overlay.length;
     },
@@ -685,36 +709,54 @@ export default {
     colorIs: function() {
       return this.isColor.color;
     },
-
-    calculateCost: function() {
-      var overlayText = this.overlay;
-      var rmSpace = overlayText.split(" ").join("");
-
-      var costDec =
-        this.cost +
-        this.LetterHeight +
-        this.LocationPrice +
-        this.Thickness +
-        rmSpace.length * 7.65;
-      return "$" + costDec.toFixed(2);
-    },
-    calculateCostdiscount: function() {
-      var overlayText = this.overlay;
-      var rmSpace = overlayText.split(" ").join("");
-
-      var costDec =
-        this.cost +
-        this.LetterHeight +
-        this.LocationPrice +
-        this.Thickness +
-        rmSpace.length * 7.65;
-      return "$" + (costDec * 0.85).toFixed(2);
-    },
+// this is used in the calculate cost function and the snipcart options to charge per letter
     isNumber: function() {
       var overlayText = this.overlay;
       var rmSpace = overlayText.split(" ").join("");
       return rmSpace.length;
     },
+
+  //Cost of LED per letter height
+     ledCOST: function() {
+    
+      if (this.isLED == "Yes") {
+    
+        if (this.isHeight == "5 Inch" | this.isHeight == "6 Inch" | this.isHeight == "7 Inch" | this.isHeight == "8 Inch" | this.isHeight == "8.5 Inch") {
+          return 8;
+        } else if (this.isHeight == "9.5 Inch +$10") {  return 9;
+        } else if (this.isHeight == "10.5 Inch +$20") {
+          return 10;
+        } else if (this.isHeight == "12 Inch +$30") {
+          return 12;
+        }
+
+        }  else return 0;  },
+
+//Dynamic Cost shown on the main page
+//trying to break it up into two functions, need cost to update dynamically and find a way to work with snip cart
+
+   
+calculateCost: function() {return this.cost = this.Thickness + this.LocationPrice + this.ledCOST + this.LetterHeight;},
+    // calculateCost: function() {
+      
+
+    //   if (this.isLED == "Yes") {
+    //     this.cost +
+    //     this.LetterHeight +
+    //     this.LocationPrice +
+    //     this.Thickness + this.ledCOST +
+    //     this.isNumber * 7.65;
+    //   return "$" + costDec.toFixed(2);
+    // } else {
+    //   this.cost +
+    //     this.LetterHeight +
+    //     this.LocationPrice +
+    //     this.Thickness +
+    //     this.isNumber * 7.65;
+    //   return "$" + cost.toFixed(2);
+    // }
+    // },
+   
 
     font: function() {
       if (this.radio.value == 1) {
@@ -954,7 +996,7 @@ export default {
       } else return "snipcart-add-item";
     },
     call() {
-      window.open("tel:6474084915");
+      window.open("tel:4165530850");
     },
     whatsappfunc: function() {
       return (location.href = "https://wa.me/14168220044");
